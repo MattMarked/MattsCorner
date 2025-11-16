@@ -76,7 +76,7 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading Matt's Corner...</p>
+          <p className="text-gray-600">Loading Matt&apos;s Corner...</p>
         </div>
       </div>
     );
@@ -89,7 +89,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">🍽️ Matt's Corner</h1>
+              <h1 className="text-2xl font-bold text-gray-900">🍽️ Matt&apos;s Corner</h1>
               <p className="text-sm text-gray-600">Dublin Food Discovery Map</p>
             </div>
             {stats && (
