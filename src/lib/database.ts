@@ -34,7 +34,7 @@ function initializeTables() {
       description TEXT,
       category TEXT,
       is_completed BOOLEAN DEFAULT FALSE,
-      google_maps_url TEXT NOT NULL,
+      google_maps_url TEXT NOT NULL UNIQUE,
       instagram_url TEXT,
       latitude REAL,
       longitude REAL,

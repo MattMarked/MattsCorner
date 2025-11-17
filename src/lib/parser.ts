@@ -16,7 +16,6 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
   const lines = markdownContent.split('\n');
   const restaurants: Restaurant[] = [];
   let currentCategory: string | null = null;
-  let restaurantId = 1;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -34,10 +33,9 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
 
     // Check if this is a restaurant entry (has checkbox and maps link)
     if (trimmedLine.includes('- [') && trimmedLine.includes('https://maps.app.goo.gl/')) {
-      const restaurant = parseRestaurantLine(trimmedLine, currentCategory, restaurantId.toString());
+      const restaurant = parseRestaurantLine(trimmedLine, currentCategory);
       if (restaurant) {
         restaurants.push(restaurant);
-        restaurantId++;
       }
     }
   }
@@ -45,7 +43,7 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
   return restaurants;
 }
 
-function parseRestaurantLine(line: string, category: string | null, id: string): Restaurant | null {
+function parseRestaurantLine(line: string, category: string | null): Restaurant | null {
   try {
     // Extract completion status
     const isCompleted = line.includes('- [x]');
@@ -55,6 +53,8 @@ function parseRestaurantLine(line: string, category: string | null, id: string):
     if (!mapsUrlMatch) return null;
     
     const googleMapsUrl = mapsUrlMatch[0];
+    // Use the Google Maps URL as the ID
+    const id = googleMapsUrl;
     
     // Extract Instagram URL if present
     const instagramUrlMatch = line.match(/https:\/\/www\.instagram\.com\/[^)]+/);
