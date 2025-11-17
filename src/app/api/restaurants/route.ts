@@ -13,6 +13,25 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search');
     
     const repository = new RestaurantRepository();
+    
+    // Auto-initialize database if empty
+    const existingRestaurants = repository.getAllRestaurants();
+    if (existingRestaurants.length === 0) {
+      console.log('Database is empty, auto-initializing from markdown...');
+      
+      const markdownPath = path.join(process.cwd(), 'src/data/dublin-food.md');
+      
+      if (fs.existsSync(markdownPath)) {
+        const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+        const restaurants = parseMarkdownToRestaurants(markdownContent);
+        
+        if (restaurants.length > 0) {
+          repository.upsertRestaurants(restaurants);
+          console.log(`Auto-initialized database with ${restaurants.length} restaurants`);
+        }
+      }
+    }
+    
     let restaurants;
     
     if (search) {
