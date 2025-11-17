@@ -90,9 +90,27 @@ function parseRestaurantLine(line: string, category: string | null, id: string):
   }
 }
 
-// Extract coordinates from Google Maps URL (requires API call)
-export function extractCoordinatesFromMapsUrl(url: string): Promise<{lat: number, lng: number} | null> {
-  // This will be implemented when we add the Google Maps geocoding
-  // For now, return a promise that resolves to null
-  return Promise.resolve(null);
+// Extract coordinates from Google Maps URL using the Geocoding API
+export async function extractCoordinatesFromMapsUrl(url: string): Promise<{lat: number, lng: number} | null> {
+  try {
+    // For shortened Google Maps URLs, we need to follow the redirect to get the full URL with coordinates
+    const response = await fetch(`/api/geocode?url=${encodeURIComponent(url)}`);
+    
+    if (!response.ok) {
+      console.error('Failed to fetch coordinates for URL:', url);
+      return null;
+    }
+    
+    const data = await response.json();
+    return data.coordinates || null;
+  } catch (error) {
+    console.error('Error extracting coordinates from URL:', url, error);
+    return null;
+  }
 }
+
+// Default coordinates for Dublin city center as fallback
+export const DUBLIN_CENTER = {
+  lat: 53.3498,
+  lng: -6.2603
+};
