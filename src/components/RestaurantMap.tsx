@@ -99,7 +99,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
 
   if (!apiKey) {
     return (
-      <div className="w-full h-96 bg-red-50 rounded-lg flex items-center justify-center">
+      <div className="w-full h-[600px] lg:h-[70vh] bg-red-50 rounded-lg flex items-center justify-center">
         <div className="text-center">
           <div className="text-4xl mb-2">🔑</div>
           <h3 className="text-xl font-semibold text-red-700 mb-2">API Key Required</h3>
@@ -111,7 +111,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
 
   if (error) {
     return (
-      <div className="w-full h-96 bg-red-50 rounded-lg flex items-center justify-center">
+      <div className="w-full h-[600px] lg:h-[70vh] bg-red-50 rounded-lg flex items-center justify-center">
         <div className="text-center">
           <div className="text-4xl mb-2">❌</div>
           <h3 className="text-xl font-semibold text-red-700 mb-2">Error Loading Map</h3>
@@ -140,7 +140,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
         </div>
       )}
       
-      <div className="w-full h-96 rounded-lg overflow-hidden">
+      <div className="w-full h-[600px] lg:h-[70vh] rounded-lg overflow-hidden">
         <APIProvider apiKey={apiKey}>
           <Map
             defaultCenter={DUBLIN_CENTER}
