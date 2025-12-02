@@ -54,8 +54,32 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Fallback: Try to extract coordinates directly from URL
-    const coordsMatch = finalUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    // Fallback: Try to extract coordinates directly from URL with multiple patterns
+    // Pattern 1: @lat,lng,zoom (most common)
+    let coordsMatch = finalUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)(?:,\d+)?/);
+    if (coordsMatch) {
+      return NextResponse.json({
+        coordinates: {
+          lat: parseFloat(coordsMatch[1]),
+          lng: parseFloat(coordsMatch[2])
+        }
+      });
+    }
+
+    // Pattern 2: !3d and !4d parameters (alternative format)
+    const latMatch = finalUrl.match(/!3d(-?\d+\.\d+)/);
+    const lngMatch = finalUrl.match(/!4d(-?\d+\.\d+)/);
+    if (latMatch && lngMatch) {
+      return NextResponse.json({
+        coordinates: {
+          lat: parseFloat(latMatch[1]),
+          lng: parseFloat(lngMatch[1])
+        }
+      });
+    }
+
+    // Pattern 3: ll= parameter (less common)
+    coordsMatch = finalUrl.match(/[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)/);
     if (coordsMatch) {
       return NextResponse.json({
         coordinates: {

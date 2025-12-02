@@ -11,6 +11,8 @@ export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshMessage, setRefreshMessage] = useState<string | null>(null);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   // Fetch data on mount
@@ -65,6 +67,55 @@ export default function Home() {
     }
 
     setFilteredRestaurants(filtered);
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    setRefreshMessage(null);
+    
+    try {
+      // Call refresh API
+      const refreshResponse = await fetch('/api/restaurants', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: 'refresh' }),
+      });
+      
+      const refreshResult = await refreshResponse.json();
+      
+      if (refreshResult.success) {
+        // Refresh all data after successful refresh
+        const [restaurantsRes, categoriesRes, statsRes] = await Promise.all([
+          fetch('/api/restaurants').then(res => res.json()),
+          fetch('/api/categories').then(res => res.json()),
+          fetch('/api/stats').then(res => res.json())
+        ]);
+        
+        if (restaurantsRes.success) {
+          setRestaurants(restaurantsRes.data);
+          setFilteredRestaurants(restaurantsRes.data);
+        }
+        if (categoriesRes.success) {
+          setCategories(categoriesRes.data);
+        }
+        if (statsRes.success) {
+          setStats(statsRes.data);
+        }
+        
+        setRefreshMessage(`✅ Successfully refreshed ${refreshResult.count} restaurants`);
+      } else {
+        setRefreshMessage(`❌ Error: ${refreshResult.error}`);
+      }
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+      setRefreshMessage('❌ Failed to refresh data');
+    } finally {
+      setRefreshing(false);
+      // Clear message after 3 seconds
+      setTimeout(() => setRefreshMessage(null), 3000);
+    }
   };
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
@@ -147,6 +198,36 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+            {/* Refresh Database Button */}
+            <div className="bg-white rounded-lg shadow-sm border p-4 mt-6">
+              <button
+                onClick={handleRefresh}
+                disabled={refreshing}
+                className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
+                  refreshing
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                }`}
+              >
+                {refreshing ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-400"></div>
+                    Refreshing...
+                  </>
+                ) : (
+                  <>
+                    🔄 Refresh Database
+                  </>
+                )}
+              </button>
+              
+              {refreshMessage && (
+                <div className="mt-3 text-sm text-center">
+                  {refreshMessage}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Map Area */}

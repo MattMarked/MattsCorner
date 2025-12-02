@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { APIProvider, Map, Marker, InfoWindow } from '@vis.gl/react-google-maps';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { APIProvider, Map as GoogleMap, Marker } from '@vis.gl/react-google-maps';
 import { Restaurant, extractCoordinatesFromMapsUrl, DUBLIN_CENTER } from '@/lib/parser';
 
 interface RestaurantMapProps {
@@ -15,17 +15,26 @@ interface RestaurantWithCoords extends Restaurant {
 
 export default function RestaurantMap({ restaurants, onRestaurantClick }: RestaurantMapProps) {
   const [restaurantsWithCoords, setRestaurantsWithCoords] = useState<RestaurantWithCoords[]>([]);
-  const [selectedRestaurant, setSelectedRestaurant] = useState<RestaurantWithCoords | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [coordinatesLoaded, setCoordinatesLoaded] = useState(0);
 
+  // Cache for geocoded coordinates to prevent duplicate API calls
+  const coordinatesCache = useRef<Map<string, { lat: number; lng: number }>>(new Map());
+  const isGeocodingRef = useRef(false);
+
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  // Memoize restaurants to prevent unnecessary re-renders
+  const memoizedRestaurants = useMemo(() => {
+    return restaurants.map(r => ({ ...r }));
+  }, [restaurants.length]);
 
   // Fetch coordinates for restaurants that don't have them
   const fetchCoordinates = useCallback(async () => {
-    if (!restaurants.length) return;
+    if (!memoizedRestaurants.length || isGeocodingRef.current) return;
     
+    isGeocodingRef.current = true;
     setIsLoading(true);
     setError(null);
     setCoordinatesLoaded(0);
@@ -33,8 +42,8 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
     try {
       const restaurantsWithCoordinates: RestaurantWithCoords[] = [];
       
-      for (let i = 0; i < restaurants.length; i++) {
-        const restaurant = restaurants[i];
+      for (let i = 0; i < memoizedRestaurants.length; i++) {
+        const restaurant = memoizedRestaurants[i];
         
         if (restaurant.coordinates) {
           // Restaurant already has coordinates
@@ -44,37 +53,53 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
           });
           setCoordinatesLoaded(i + 1);
         } else {
-          // Fetch coordinates from Google Maps URL
-          try {
-            const coords = await extractCoordinatesFromMapsUrl(restaurant.googleMapsUrl);
-            
-            if (coords) {
-              restaurantsWithCoordinates.push({
-                ...restaurant,
-                coordinates: coords
-              });
-            } else {
-              // Fallback to Dublin center if geocoding fails
-              console.warn(`Could not geocode restaurant: ${restaurant.name}`);
-              restaurantsWithCoordinates.push({
-                ...restaurant,
-                coordinates: DUBLIN_CENTER
-              });
-            }
-            setCoordinatesLoaded(i + 1);
-          } catch (err) {
-            console.error(`Error geocoding restaurant ${restaurant.name}:`, err);
-            // Add with fallback coordinates
+          // Check cache first
+          const cachedCoords = coordinatesCache.current.get(restaurant.googleMapsUrl);
+          if (cachedCoords) {
             restaurantsWithCoordinates.push({
               ...restaurant,
-              coordinates: DUBLIN_CENTER
+              coordinates: cachedCoords
             });
             setCoordinatesLoaded(i + 1);
+          } else {
+            // Fetch coordinates from Google Maps URL
+            try {
+              const coords = await extractCoordinatesFromMapsUrl(restaurant.googleMapsUrl);
+              
+              if (coords) {
+                // Cache the result
+                coordinatesCache.current.set(restaurant.googleMapsUrl, coords);
+                restaurantsWithCoordinates.push({
+                  ...restaurant,
+                  coordinates: coords
+                });
+              } else {
+                // Fallback to Dublin center if geocoding fails
+                console.warn(`Could not geocode restaurant: ${restaurant.name}`);
+                const fallbackCoords = DUBLIN_CENTER;
+                coordinatesCache.current.set(restaurant.googleMapsUrl, fallbackCoords);
+                restaurantsWithCoordinates.push({
+                  ...restaurant,
+                  coordinates: fallbackCoords
+                });
+              }
+              setCoordinatesLoaded(i + 1);
+            } catch (err) {
+              console.error(`Error geocoding restaurant ${restaurant.name}:`, err);
+              // Add with fallback coordinates
+              const fallbackCoords = DUBLIN_CENTER;
+              coordinatesCache.current.set(restaurant.googleMapsUrl, fallbackCoords);
+              restaurantsWithCoordinates.push({
+                ...restaurant,
+                coordinates: fallbackCoords
+              });
+              setCoordinatesLoaded(i + 1);
+            }
           }
         }
         
         // Small delay to avoid hitting API rate limits
-        if (i < restaurants.length - 1) {
+        if (i < memoizedRestaurants.length - 1) {
           await new Promise(resolve => setTimeout(resolve, 100));
         }
       }
@@ -85,15 +110,15 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
       setError('Failed to load restaurant locations');
     } finally {
       setIsLoading(false);
+      isGeocodingRef.current = false;
     }
-  }, [restaurants]);
+  }, [memoizedRestaurants]);
 
   useEffect(() => {
     fetchCoordinates();
   }, [fetchCoordinates]);
 
   const handleMarkerClick = (restaurant: RestaurantWithCoords) => {
-    setSelectedRestaurant(restaurant);
     onRestaurantClick?.(restaurant);
   };
 
@@ -142,7 +167,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
       
       <div className="w-full h-[600px] lg:h-[70vh] rounded-lg overflow-hidden">
         <APIProvider apiKey={apiKey}>
-          <Map
+          <GoogleMap
             defaultCenter={DUBLIN_CENTER}
             defaultZoom={12}
             gestureHandling={'greedy'}
@@ -157,54 +182,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
                 title={restaurant.name}
               />
             ))}
-
-            {selectedRestaurant && (
-              <InfoWindow
-                position={selectedRestaurant.coordinates}
-                onCloseClick={() => setSelectedRestaurant(null)}
-              >
-                <div className="p-2 max-w-xs">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-lg ${selectedRestaurant.isCompleted ? 'text-green-600' : 'text-gray-500'}`}>
-                      {selectedRestaurant.isCompleted ? '✅' : '📍'}
-                    </span>
-                    <h3 className="font-semibold text-gray-900">{selectedRestaurant.name}</h3>
-                  </div>
-                  
-                  {selectedRestaurant.category && (
-                    <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full mb-2">
-                      {selectedRestaurant.category}
-                    </span>
-                  )}
-                  
-                  {selectedRestaurant.description && (
-                    <p className="text-sm text-gray-600 mb-3">{selectedRestaurant.description}</p>
-                  )}
-                  
-                  <div className="flex gap-2 text-xs">
-                    <a
-                      href={selectedRestaurant.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline"
-                    >
-                      📍 View on Maps
-                    </a>
-                    {selectedRestaurant.instagramUrl && (
-                      <a
-                        href={selectedRestaurant.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-purple-600 hover:text-purple-800 underline"
-                      >
-                        📷 Instagram
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </InfoWindow>
-            )}
-          </Map>
+          </GoogleMap>
         </APIProvider>
       </div>
 

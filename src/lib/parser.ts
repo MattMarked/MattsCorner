@@ -24,18 +24,23 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
     // Skip empty lines
     if (!trimmedLine) continue;
 
-    // Check if this is a category line (starts with "- [ ]" and no Google Maps URL)
-    if (trimmedLine.startsWith('- [ ]') && !trimmedLine.includes('https://maps.app.goo.gl/')) {
-      // This is a category header
-      currentCategory = trimmedLine.replace('- [ ]', '').trim();
-      continue;
-    }
-
-    // Check if this is a restaurant entry (has checkbox and maps link)
-    if (trimmedLine.includes('- [') && trimmedLine.includes('https://maps.app.goo.gl/')) {
+    // Check if this line contains a Google Maps URL - if yes, it's an item
+    if (trimmedLine.includes('https://maps.app.goo.gl/')) {
       const restaurant = parseRestaurantLine(trimmedLine, currentCategory);
       if (restaurant) {
         restaurants.push(restaurant);
+      }
+    } else {
+      // If no Google Maps URL, it's a category line
+      // Remove any leading dashes, brackets, and whitespace to get clean category name
+      let categoryName = trimmedLine
+        .replace(/^[\s\-\*]*/, '') // Remove leading whitespace, dashes, asterisks
+        .replace(/^\[[x ]\]\s*/, '') // Remove checkbox if present
+        .trim();
+      
+      // Only set as category if it's not empty after cleaning
+      if (categoryName) {
+        currentCategory = categoryName;
       }
     }
   }
@@ -46,39 +51,46 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
 function parseRestaurantLine(line: string, category: string | null): Restaurant | null {
   try {
     // Extract completion status
-    const isCompleted = line.includes('- [x]');
+    const isCompleted = line.includes('[x]');
     
-    // Extract Google Maps URL
+    // Extract Google Maps URL as primary key
     const mapsUrlMatch = line.match(/https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+/);
     if (!mapsUrlMatch) return null;
     
     const googleMapsUrl = mapsUrlMatch[0];
-    // Use the Google Maps URL as the ID
-    const id = googleMapsUrl;
+    // Remove leading and trailing parentheses from URL when using as database key
+    const id = googleMapsUrl.replace(/^\(+|\)+$/g, '');
     
     // Extract Instagram URL if present
     const instagramUrlMatch = line.match(/https:\/\/www\.instagram\.com\/[^)]+/);
     const instagramUrl = instagramUrlMatch ? instagramUrlMatch[0] : undefined;
     
-    // Extract name and description
-    // Remove checkbox, maps URL, instagram URL, and other markdown links
-    let nameAndDescription = line
-      .replace(/- \[[x ]\]/, '') // Remove checkbox
-      .replace(/https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+\)?/, '') // Remove maps URL
-      .replace(/\(https:\/\/www\.instagram\.com\/[^)]+\)/, '') // Remove instagram URL
-      .replace(/\[\[[^\]]+\]\]/g, '') // Remove internal links like [[ristoranti vicini a casa]]
-      .replace(/\([^)]*\)/g, '') // Remove other parentheses content
+    // Process brackets according to new rules:
+    // 1. Remove double brackets [[]] and their content completely
+    // 2. Convert single brackets [] to just the content
+    let processedLine = line
+      .replace(/\[\[[^\]]*\]\]/g, '') // Remove [[content]] completely
+      .replace(/\[([^\]]*)\]/g, '$1') // Convert [content] to just content
+      .replace(/https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+\)?/g, '') // Remove Google Maps URL
+      .replace(/\(https:\/\/www\.instagram\.com\/[^)]+\)/g, '') // Remove Instagram URLs
+      .replace(/^\s*-\s*/, '') // Remove leading dash and whitespace
       .trim();
+
+    // Split by "-" separator to get name, description, notes
+    const parts = processedLine.split(' - ').map(part => part.trim()).filter(part => part.length > 0);
     
-    // Split name from description (usually separated by ' - ')
-    const parts = nameAndDescription.split(' - ');
-    const name = parts[0].trim();
-    const description = parts.length > 1 ? parts.slice(1).join(' - ').trim() : '';
+    // Map parts: splitted[0] = name, splitted[1] = description, splitted[2]+ = notes
+    const name = parts[0] || '';
+    const description = parts[1] || '';
+    const notes = parts.length > 2 ? parts.slice(2).join(' - ') : '';
+    
+    // Combine description and notes if both exist
+    const fullDescription = notes ? `${description} - ${notes}` : description;
     
     return {
       id,
       name,
-      description,
+      description: fullDescription,
       category,
       isCompleted,
       googleMapsUrl,

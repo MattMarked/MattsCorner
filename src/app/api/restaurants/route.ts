@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     if (existingRestaurants.length === 0) {
       console.log('Database is empty, auto-initializing from markdown...');
       
-      const markdownPath = path.join(process.cwd(), 'src/data/dublin-food.md');
+            const markdownPath = '/Users/mttimar/Dropbox/ObsydianVault/Food/Dublin food - to try.md';
       
       if (fs.existsSync(markdownPath)) {
         const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     // Handle different POST operations
     if (body.action === 'refresh') {
       // Refresh data from markdown file
-      const markdownPath = path.join(process.cwd(), 'src/data/dublin-food.md');
+      const markdownPath = '/Users/mttimar/Dropbox/ObsydianVault/Food/Dublin food - to try.md';
       
       if (!fs.existsSync(markdownPath)) {
         return NextResponse.json(
