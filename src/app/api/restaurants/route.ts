@@ -18,8 +18,7 @@ export async function GET(request: NextRequest) {
     const existingRestaurants = repository.getAllRestaurants();
     if (existingRestaurants.length === 0) {
       console.log('Database is empty, auto-initializing from markdown...');
-      
-            const markdownPath = '/Users/mttimar/Dropbox/ObsydianVault/Food/Dublin food - to try.md';
+      const markdownPath = '/Users/mttimar/Dropbox/ObsydianVault/Food/Dublin food - to try.md';
       
       if (fs.existsSync(markdownPath)) {
         const markdownContent = fs.readFileSync(markdownPath, 'utf-8');

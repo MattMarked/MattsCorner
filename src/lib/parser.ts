@@ -1,3 +1,5 @@
+import { applyConfiguredShift } from './coordinates';
+
 export interface Restaurant {
   id: string;
   name: string;
@@ -122,7 +124,10 @@ export async function extractCoordinatesFromMapsUrl(url: string): Promise<{lat: 
 }
 
 // Default coordinates for Dublin city center as fallback
-export const DUBLIN_CENTER = {
+const DUBLIN_CENTER_ORIGINAL = {
   lat: 53.3498,
   lng: -6.2603
 };
+
+// Apply coordinate shift to Dublin center fallback
+export const DUBLIN_CENTER = applyConfiguredShift(DUBLIN_CENTER_ORIGINAL) || DUBLIN_CENTER_ORIGINAL;

@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import { Restaurant } from './parser';
+import { shiftCoordinatesEast, isCoordinateShiftEnabled, getEastShiftDistance } from './coordinates';
 import path from 'path';
 import fs from 'fs';
 
@@ -204,6 +205,60 @@ export class RestaurantRepository {
     const categories = (categoriesStmt.get() as any)?.count || 0;
     
     return { total, completed, categories };
+  }
+  
+  // Migrate existing coordinates by applying eastward shift
+  migrateCoordinatesEastward(): { updated: number; skipped: number } {
+    if (!isCoordinateShiftEnabled()) {
+      console.log('Coordinate shifting is disabled, skipping migration');
+      return { updated: 0, skipped: 0 };
+    }
+    
+    const shiftDistance = getEastShiftDistance();
+    console.log(`Migrating existing coordinates with ${shiftDistance}m eastward shift...`);
+    
+    // Get all restaurants with coordinates
+    const selectStmt = this.db.prepare(`
+      SELECT id, name, latitude, longitude 
+      FROM restaurants 
+      WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+    `);
+    
+    const updateStmt = this.db.prepare(`
+      UPDATE restaurants 
+      SET latitude = ?, longitude = ?, updated_at = CURRENT_TIMESTAMP 
+      WHERE id = ?
+    `);
+    
+    const rows = selectStmt.all() as any[];
+    let updated = 0;
+    let skipped = 0;
+    
+    const transaction = this.db.transaction(() => {
+      for (const row of rows) {
+        try {
+          const originalCoords = {
+            lat: row.latitude,
+            lng: row.longitude
+          };
+          
+          const shiftedCoords = shiftCoordinatesEast(originalCoords, shiftDistance);
+          
+          updateStmt.run(shiftedCoords.lat, shiftedCoords.lng, row.id);
+          updated++;
+          
+          console.log(`Updated ${row.name}: (${originalCoords.lat}, ${originalCoords.lng}) → (${shiftedCoords.lat}, ${shiftedCoords.lng})`);
+        } catch (error) {
+          console.error(`Error updating coordinates for ${row.name}:`, error);
+          skipped++;
+        }
+      }
+    });
+    
+    transaction();
+    
+    console.log(`Migration complete: ${updated} restaurants updated, ${skipped} skipped`);
+    return { updated, skipped };
   }
   
   private mapRowToRestaurant(row: any): Restaurant {

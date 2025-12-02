@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { applyConfiguredShift } from '@/lib/coordinates';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -45,11 +46,13 @@ export async function GET(request: NextRequest) {
 
       if (geocodeData.status === 'OK' && geocodeData.results.length > 0) {
         const location = geocodeData.results[0].geometry.location;
+        const originalCoords = {
+          lat: location.lat,
+          lng: location.lng
+        };
+        const shiftedCoords = applyConfiguredShift(originalCoords);
         return NextResponse.json({
-          coordinates: {
-            lat: location.lat,
-            lng: location.lng
-          }
+          coordinates: shiftedCoords
         });
       }
     }
@@ -58,11 +61,13 @@ export async function GET(request: NextRequest) {
     // Pattern 1: @lat,lng,zoom (most common)
     let coordsMatch = finalUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)(?:,\d+)?/);
     if (coordsMatch) {
+      const originalCoords = {
+        lat: parseFloat(coordsMatch[1]),
+        lng: parseFloat(coordsMatch[2])
+      };
+      const shiftedCoords = applyConfiguredShift(originalCoords);
       return NextResponse.json({
-        coordinates: {
-          lat: parseFloat(coordsMatch[1]),
-          lng: parseFloat(coordsMatch[2])
-        }
+        coordinates: shiftedCoords
       });
     }
 
@@ -70,22 +75,26 @@ export async function GET(request: NextRequest) {
     const latMatch = finalUrl.match(/!3d(-?\d+\.\d+)/);
     const lngMatch = finalUrl.match(/!4d(-?\d+\.\d+)/);
     if (latMatch && lngMatch) {
+      const originalCoords = {
+        lat: parseFloat(latMatch[1]),
+        lng: parseFloat(lngMatch[1])
+      };
+      const shiftedCoords = applyConfiguredShift(originalCoords);
       return NextResponse.json({
-        coordinates: {
-          lat: parseFloat(latMatch[1]),
-          lng: parseFloat(lngMatch[1])
-        }
+        coordinates: shiftedCoords
       });
     }
 
     // Pattern 3: ll= parameter (less common)
     coordsMatch = finalUrl.match(/[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)/);
     if (coordsMatch) {
+      const originalCoords = {
+        lat: parseFloat(coordsMatch[1]),
+        lng: parseFloat(coordsMatch[2])
+      };
+      const shiftedCoords = applyConfiguredShift(originalCoords);
       return NextResponse.json({
-        coordinates: {
-          lat: parseFloat(coordsMatch[1]),
-          lng: parseFloat(coordsMatch[2])
-        }
+        coordinates: shiftedCoords
       });
     }
 
@@ -101,11 +110,13 @@ export async function GET(request: NextRequest) {
 
       if (geocodeData.status === 'OK' && geocodeData.results.length > 0) {
         const location = geocodeData.results[0].geometry.location;
+        const originalCoords = {
+          lat: location.lat,
+          lng: location.lng
+        };
+        const shiftedCoords = applyConfiguredShift(originalCoords);
         return NextResponse.json({
-          coordinates: {
-            lat: location.lat,
-            lng: location.lng
-          }
+          coordinates: shiftedCoords
         });
       }
     }
