@@ -184,5 +184,55 @@ function cleanText(text: string): string {
     .trim();
 }
 
+// Helper function to extract coordinates from Google Maps URLs
+export function extractCoordinatesFromMapsUrl(url: string): { lat: number; lng: number } | null {
+  if (!url) return null;
+  
+  try {
+    // Try different Google Maps URL patterns
+    
+    // Pattern 1: @lat,lng,zoom
+    let match = url.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+    if (match) {
+      return {
+        lat: parseFloat(match[1]),
+        lng: parseFloat(match[2])
+      };
+    }
+    
+    // Pattern 2: ll=lat,lng
+    match = url.match(/ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+    if (match) {
+      return {
+        lat: parseFloat(match[1]),
+        lng: parseFloat(match[2])
+      };
+    }
+    
+    // Pattern 3: q=lat,lng
+    match = url.match(/q=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+    if (match) {
+      return {
+        lat: parseFloat(match[1]),
+        lng: parseFloat(match[2])
+      };
+    }
+    
+    // Pattern 4: destination coordinates
+    match = url.match(/destination=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
+    if (match) {
+      return {
+        lat: parseFloat(match[1]),
+        lng: parseFloat(match[2])
+      };
+    }
+    
+  } catch (error) {
+    console.error('Error extracting coordinates from URL:', error);
+  }
+  
+  return null;
+}
+
 // Export for testing
 export { parseRestaurantItem };
