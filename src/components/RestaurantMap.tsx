@@ -64,7 +64,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
           } else {
             // Fetch coordinates from Google Maps URL
             try {
-              const coords = await extractCoordinatesFromMapsUrl(restaurant.googleMapsUrl);
+              const coords = extractCoordinatesFromMapsUrl(restaurant.googleMapsUrl);
               
               if (coords) {
                 // Cache the result

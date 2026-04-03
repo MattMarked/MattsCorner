@@ -14,6 +14,11 @@ export interface Restaurant {
   };
 }
 
+export const DUBLIN_CENTER = {
+  lat: 53.3485, //53.3485°N 6.2531°W
+  lng: 6.2531
+}
+
 export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[] {
   const restaurants: Restaurant[] = [];
   const lines = markdownContent.split('\n');
