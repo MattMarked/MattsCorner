@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { RestaurantRepository } from '@/lib/database';
+import { RestaurantRepository } from '@/lib/database-turso';
 
 // GET /api/stats - Get restaurant statistics
 export async function GET() {
   try {
     const repository = new RestaurantRepository();
-    const stats = repository.getStats();
+    const stats = await repository.getStats();
     
     // Calculate additional stats
     const completionRate = stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;

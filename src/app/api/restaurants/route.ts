@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { RestaurantRepository } from '@/lib/database';
+import { RestaurantRepository } from '@/lib/database-turso';
 import { parseMarkdownToRestaurants } from '@/lib/parser';
 import fs from 'fs';
 import path from 'path';
@@ -13,35 +13,35 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search');
     
     const repository = new RestaurantRepository();
-    
-    // Auto-initialize database if empty
-    const existingRestaurants = repository.getAllRestaurants();
-    if (existingRestaurants.length === 0) {
-      console.log('Database is empty, auto-initializing from markdown...');
+
+    // Auto-initialize database if empty (only for local development)
+    const existingRestaurants = await repository.getAllRestaurants();
+    if (existingRestaurants.length === 0 && process.env.NODE_ENV === 'development') {
+      console.log('Database is empty in development, auto-initializing from markdown...');
       const markdownPath = '/Users/mttimar/Dropbox/ObsydianVault/Food/Dublin food - to try.md';
-      
+
       if (fs.existsSync(markdownPath)) {
         const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
         const restaurants = parseMarkdownToRestaurants(markdownContent);
-        
+
         if (restaurants.length > 0) {
-          repository.upsertRestaurants(restaurants);
+          await repository.upsertRestaurants(restaurants);
           console.log(`Auto-initialized database with ${restaurants.length} restaurants`);
         }
       }
     }
-    
+
     let restaurants;
-    
+
     if (search) {
-      restaurants = repository.searchRestaurants(search);
+      restaurants = await repository.searchRestaurants(search);
     } else if (category) {
-      restaurants = repository.getRestaurantsByCategory(category);
+      restaurants = await repository.getRestaurantsByCategory(category);
     } else if (status) {
       const isCompleted = status === 'completed';
-      restaurants = repository.getRestaurantsByStatus(isCompleted);
+      restaurants = await repository.getRestaurantsByStatus(isCompleted);
     } else {
-      restaurants = repository.getAllRestaurants();
+      restaurants = await repository.getAllRestaurants();
     }
     
     return NextResponse.json({
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
       const restaurants = parseMarkdownToRestaurants(markdownContent);
       
       // Update database
-      repository.upsertRestaurants(restaurants);
+      await repository.upsertRestaurants(restaurants);
       
       return NextResponse.json({
         success: true,
@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
       
     } else if (body.action === 'update-status' && body.id && typeof body.isCompleted === 'boolean') {
       // Update individual restaurant status
-      repository.updateRestaurantStatus(body.id, body.isCompleted);
+      await repository.updateRestaurantStatus(body.id, body.isCompleted);
       
       return NextResponse.json({
         success: true,

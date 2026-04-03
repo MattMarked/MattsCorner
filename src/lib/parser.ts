@@ -1,10 +1,10 @@
-import { applyConfiguredShift } from './coordinates';
+import crypto from 'crypto';
 
 export interface Restaurant {
   id: string;
   name: string;
   description: string;
-  category: string | null;
+  category: string;
   isCompleted: boolean;
   googleMapsUrl: string;
   instagramUrl?: string;
@@ -15,119 +15,174 @@ export interface Restaurant {
 }
 
 export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[] {
-  const lines = markdownContent.split('\n');
   const restaurants: Restaurant[] = [];
-  let currentCategory: string | null = null;
-
+  const lines = markdownContent.split('\n');
+  
+  let currentCategory = '';
+  let isInCodeBlock = false;
+  
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const trimmedLine = line.trim();
+    const line = lines[i].trim();
     
     // Skip empty lines
-    if (!trimmedLine) continue;
-
-    // Check if this line contains a Google Maps URL - if yes, it's an item
-    if (trimmedLine.includes('https://maps.app.goo.gl/')) {
-      const restaurant = parseRestaurantLine(trimmedLine, currentCategory);
+    if (!line) continue;
+    
+    // Track code blocks to ignore their content
+    if (line.startsWith('```')) {
+      isInCodeBlock = !isInCodeBlock;
+      continue;
+    }
+    
+    if (isInCodeBlock) continue;
+    
+    // Detect categories (headers like ## Category or # Category)
+    const categoryMatch = line.match(/^#+\s+(.+)/);
+    if (categoryMatch) {
+      currentCategory = categoryMatch[1].trim();
+      console.log(`Found category: ${currentCategory}`);
+      continue;
+    }
+    
+    // Detect list items (lines starting with - or *)
+    const listItemMatch = line.match(/^[\s]*[-*]\s+(.+)/);
+    if (listItemMatch) {
+      const itemContent = listItemMatch[1];
+      const restaurant = parseRestaurantItem(itemContent, currentCategory);
+      
       if (restaurant) {
         restaurants.push(restaurant);
-      }
-    } else {
-      // If no Google Maps URL, it's a category line
-      // Remove any leading dashes, brackets, and whitespace to get clean category name
-      let categoryName = trimmedLine
-        .replace(/^[\s\-\*]*/, '') // Remove leading whitespace, dashes, asterisks
-        .replace(/^\[[x ]\]\s*/, '') // Remove checkbox if present
-        .trim();
-      
-      // Only set as category if it's not empty after cleaning
-      if (categoryName) {
-        currentCategory = categoryName;
+        console.log(`Parsed restaurant: ${restaurant.name} in category: ${restaurant.category}`);
       }
     }
   }
-
+  
+  console.log(`Total restaurants parsed: ${restaurants.length}`);
   return restaurants;
 }
 
-function parseRestaurantLine(line: string, category: string | null): Restaurant | null {
+function parseRestaurantItem(content: string, category: string): Restaurant | null {
   try {
-    // Extract completion status
-    const isCompleted = line.includes('[x]');
+    // Remove content in square brackets [ ]
+    let cleanContent = content.replace(/\[[^\]]*\]/g, '').trim();
     
-    // Extract Google Maps URL as primary key
-    const mapsUrlMatch = line.match(/https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+/);
-    if (!mapsUrlMatch) return null;
+    // Extract links (both in markdown format [text](url) and plain URLs)
+    const links: string[] = [];
     
-    const googleMapsUrl = mapsUrlMatch[0];
-    // Remove leading and trailing parentheses from URL when using as database key
-    const id = googleMapsUrl.replace(/^\(+|\)+$/g, '');
+    // Extract markdown links
+    const markdownLinkRegex = /\[([^\]]*)\]\(([^)]+)\)/g;
+    let match;
+    while ((match = markdownLinkRegex.exec(cleanContent)) !== null) {
+      links.push(match[2]);
+    }
     
-    // Extract Instagram URL if present
-    const instagramUrlMatch = line.match(/https:\/\/www\.instagram\.com\/[^)]+/);
-    const instagramUrl = instagramUrlMatch ? instagramUrlMatch[0] : undefined;
+    // Remove markdown links from content
+    cleanContent = cleanContent.replace(markdownLinkRegex, '').trim();
     
-    // Process brackets according to new rules:
-    // 1. Remove double brackets [[]] and their content completely
-    // 2. Convert single brackets [] to just the content
-    let processedLine = line
-      .replace(/\[\[[^\]]*\]\]/g, '') // Remove [[content]] completely
-      .replace(/\[([^\]]*)\]/g, '$1') // Convert [content] to just content
-      .replace(/https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+\)?/g, '') // Remove Google Maps URL
-      .replace(/\(https:\/\/www\.instagram\.com\/[^)]+\)/g, '') // Remove Instagram URLs
-      .replace(/^\s*-\s*/, '') // Remove leading dash and whitespace
-      .trim();
-
-    // Split by "-" separator to get name, description, notes
-    const parts = processedLine.split(' - ').map(part => part.trim()).filter(part => part.length > 0);
+    // Extract plain URLs (http/https)
+    const urlRegex = /(https?:\/\/[^\s)+]+)/g;
+    let urlMatch;
+    while ((urlMatch = urlRegex.exec(cleanContent)) !== null) {
+      links.push(urlMatch[1]);
+    }
     
-    // Map parts: splitted[0] = name, splitted[1] = description, splitted[2]+ = notes
-    const name = parts[0] || '';
-    const description = parts[1] || '';
-    const notes = parts.length > 2 ? parts.slice(2).join(' - ') : '';
+    // Remove plain URLs from content
+    cleanContent = cleanContent.replace(urlRegex, '').trim();
     
-    // Combine description and notes if both exist
-    const fullDescription = notes ? `${description} - ${notes}` : description;
+    // Remove parentheses that might be left from links
+    cleanContent = cleanContent.replace(/\(\s*\)/g, '').trim();
     
-    return {
-      id,
-      name,
-      description: fullDescription,
-      category,
-      isCompleted,
-      googleMapsUrl,
-      instagramUrl,
-    };
-  } catch (error) {
-    console.error('Error parsing restaurant line:', line, error);
-    return null;
-  }
-}
-
-// Extract coordinates from Google Maps URL using the Geocoding API
-export async function extractCoordinatesFromMapsUrl(url: string): Promise<{lat: number, lng: number} | null> {
-  try {
-    // For shortened Google Maps URLs, we need to follow the redirect to get the full URL with coordinates
-    const response = await fetch(`/api/geocode?url=${encodeURIComponent(url)}`);
+    // Split by " - " to separate description and name
+    const parts = cleanContent.split(' - ').map(part => part.trim()).filter(part => part);
     
-    if (!response.ok) {
-      console.error('Failed to fetch coordinates for URL:', url);
+    let description = '';
+    let nameWithNote = '';
+    
+    if (parts.length === 2) {
+      // First part is description, second is name
+      description = parts[0];
+      nameWithNote = parts[1];
+    } else if (parts.length === 1) {
+      // Only one part, it's the name
+      nameWithNote = parts[0];
+    } else {
+      // Invalid format, skip
+      console.warn(`Skipping invalid restaurant item: ${content}`);
       return null;
     }
     
-    const data = await response.json();
-    return data.coordinates || null;
+    // Parse name and note (separated by comma)
+    const nameMatch = nameWithNote.match(/^([^,]+)(?:,\s*(.+))?/);
+    const name = nameMatch ? nameMatch[1].trim() : nameWithNote;
+    const note = nameMatch && nameMatch[2] ? nameMatch[2].trim() : '';
+    
+    // Combine description and note
+    let finalDescription = description;
+    if (note) {
+      finalDescription = finalDescription ? `${finalDescription} (${note})` : note;
+    }
+    
+    // Categorize links
+    let googleMapsUrl = '';
+    let instagramUrl = '';
+    
+    for (const link of links) {
+      if (link.includes('google.com/maps') || link.includes('maps.google.com') || link.includes('goo.gl/maps')) {
+        googleMapsUrl = link;
+      } else if (link.includes('instagram.com')) {
+        instagramUrl = link;
+      }
+      // Add other link types as needed
+    }
+    
+    // Skip items without Google Maps URL (required)
+    if (!googleMapsUrl) {
+      console.warn(`Skipping restaurant without Google Maps URL: ${name}`);
+      return null;
+    }
+    
+    // Generate unique ID based on name and category
+    const id = crypto
+      .createHash('md5')
+      .update(`${category}-${name}`)
+      .digest('hex')
+      .substring(0, 8);
+    
+    // Determine completion status based on various indicators
+    const completionIndicators = [
+      '✅', '✓', '[x]', '[X]', '☑', '🗸',
+      'visited', 'done', 'completed', 'been',
+      'went', 'tried', 'ate'
+    ];
+    
+    const isCompleted = completionIndicators.some(indicator => 
+      content.toLowerCase().includes(indicator.toLowerCase())
+    );
+    
+    const restaurant: Restaurant = {
+      id,
+      name: name || 'Unknown Restaurant',
+      description: finalDescription,
+      category: category || 'Uncategorized',
+      isCompleted,
+      googleMapsUrl,
+      instagramUrl: instagramUrl || undefined
+    };
+    
+    return restaurant;
+    
   } catch (error) {
-    console.error('Error extracting coordinates from URL:', url, error);
+    console.error(`Error parsing restaurant item "${content}":`, error);
     return null;
   }
 }
 
-// Default coordinates for Dublin city center as fallback
-const DUBLIN_CENTER_ORIGINAL = {
-  lat: 53.3498,
-  lng: -6.2603
-};
+// Helper function to clean text content
+function cleanText(text: string): string {
+  return text
+    .replace(/\s+/g, ' ') // Multiple spaces to single space
+    .replace(/[^\w\s,.-]/g, '') // Remove special characters except common punctuation
+    .trim();
+}
 
-// Apply coordinate shift to Dublin center fallback
-export const DUBLIN_CENTER = applyConfiguredShift(DUBLIN_CENTER_ORIGINAL) || DUBLIN_CENTER_ORIGINAL;
+// Export for testing
+export { parseRestaurantItem };

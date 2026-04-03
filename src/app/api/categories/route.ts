@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { RestaurantRepository } from '@/lib/database';
+import { RestaurantRepository } from '@/lib/database-turso';
 
 // GET /api/categories - Get all unique categories
 export async function GET() {
   try {
     const repository = new RestaurantRepository();
-    const categories = repository.getAllCategories();
+    const categories = await repository.getAllCategories();
     
     return NextResponse.json({
       success: true,
