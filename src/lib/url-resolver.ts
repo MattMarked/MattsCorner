@@ -1,4 +1,4 @@
-// Server-side URL resolver to get coordinates from shortened Google Maps URLs
+import { applyConfiguredShift } from './coordinates';
 
 export interface Coordinates {
   lat: number;
@@ -7,24 +7,25 @@ export interface Coordinates {
 
 /**
  * Resolves a shortened Google Maps URL to get coordinates
- * Works by following redirects to get the full URL, then extracting @lat,lng
+ * Works by following redirects to get the full URL, then extracting coordinates
  */
 export async function resolveGoogleMapsUrl(shortenedUrl: string): Promise<Coordinates | null> {
   if (!shortenedUrl) return null;
   
   try {
     // If the URL already contains coordinates, extract them directly
-    const directCoords = extractCoordinatesFromUrl(shortenedUrl);
-    if (directCoords) {
-      return directCoords;
+    let coords = extractCoordinatesFromUrl(shortenedUrl);
+    
+    if (!coords) {
+      // Follow redirects to get the full URL
+      const fullUrl = await followRedirects(shortenedUrl);
+      if (fullUrl) {
+        coords = extractCoordinatesFromUrl(fullUrl);
+      }
     }
     
-    // Follow redirects to get the full URL
-    const fullUrl = await followRedirects(shortenedUrl);
-    if (!fullUrl) return null;
-    
-    // Extract coordinates from the full URL
-    return extractCoordinatesFromUrl(fullUrl);
+    // Apply coordinate shift if enabled
+    return applyConfiguredShift(coords);
     
   } catch (error) {
     console.error(`Error resolving URL ${shortenedUrl}:`, error);
@@ -38,8 +39,11 @@ export async function resolveGoogleMapsUrl(shortenedUrl: string): Promise<Coordi
 async function followRedirects(url: string): Promise<string | null> {
   try {
     const response = await fetch(url, {
-      method: 'HEAD',
-      redirect: 'follow'
+      method: 'GET', // GET is more reliable for some redirects than HEAD
+      redirect: 'follow',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
     });
     
     return response.url || null;
@@ -65,7 +69,17 @@ export function extractCoordinatesFromUrl(url: string): Coordinates | null {
       };
     }
     
-    // Pattern 2: ll=lat,lng
+    // Pattern 2: !3d and !4d parameters (alternative format)
+    const latMatch = url.match(/!3d(-?\d+\.\d+)/);
+    const lngMatch = url.match(/!4d(-?\d+\.\d+)/);
+    if (latMatch && lngMatch) {
+      return {
+        lat: parseFloat(latMatch[1]),
+        lng: parseFloat(lngMatch[1])
+      };
+    }
+    
+    // Pattern 3: ll=lat,lng
     match = url.match(/ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
     if (match) {
       return {
@@ -74,7 +88,7 @@ export function extractCoordinatesFromUrl(url: string): Coordinates | null {
       };
     }
     
-    // Pattern 3: q=lat,lng
+    // Pattern 4: q=lat,lng
     match = url.match(/q=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
     if (match) {
       return {
@@ -83,7 +97,7 @@ export function extractCoordinatesFromUrl(url: string): Coordinates | null {
       };
     }
     
-    // Pattern 4: destination=lat,lng
+    // Pattern 5: destination=lat,lng
     match = url.match(/destination=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
     if (match) {
       return {

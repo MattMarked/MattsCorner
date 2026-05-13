@@ -234,9 +234,7 @@ async function resolveRestaurantCoordinates(restaurants: Restaurant[]): Promise<
       restaurant.coordinates = coords;
       resolvedCount++;
     } else {
-      // Fallback to Dublin center if resolution failed
-      console.warn(`Could not resolve coordinates for: ${restaurant.name}, using Dublin center`);
-      restaurant.coordinates = { ...DUBLIN_CENTER };
+      console.warn(`Could not resolve coordinates for: ${restaurant.name}`);
       fallbackCount++;
     }
   }
