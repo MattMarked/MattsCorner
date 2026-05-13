@@ -14,9 +14,14 @@ export async function GET(request: NextRequest) {
     
     const repository = new RestaurantRepository();
 
-    // Use repository path by default, allowing override via env
-    const repoPath = path.join(process.cwd(), 'src/data/dublin-food.md');
-    const markdownPath = process.env.MARKDOWN_PATH || repoPath;
+    // Auto-initialize database if empty (only for local development)
+    const existingRestaurants = await repository.getAllRestaurants();
+    if (existingRestaurants.length === 0 && process.env.NODE_ENV === 'development') {
+      console.log('Database is empty in development, auto-initializing from markdown...');
+      
+      // Use repository path by default, allowing override via env
+      const repoPath = path.join(process.cwd(), 'src/data/dublin-food.md');
+      const markdownPath = process.env.MARKDOWN_PATH || repoPath;
 
       if (fs.existsSync(markdownPath)) {
         const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
