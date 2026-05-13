@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
       if (fs.existsSync(markdownPath)) {
         const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
-        const restaurants = parseMarkdownToRestaurants(markdownContent);
+        const restaurants = await parseMarkdownToRestaurants(markdownContent);
 
         if (restaurants.length > 0) {
           await repository.upsertRestaurants(restaurants);
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
       }
       
       const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
-      const restaurants = parseMarkdownToRestaurants(markdownContent);
+      const restaurants = await parseMarkdownToRestaurants(markdownContent);
       
       // Update database
       await repository.upsertRestaurants(restaurants);
