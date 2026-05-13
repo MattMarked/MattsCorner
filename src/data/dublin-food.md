@@ -1,1 +1,112 @@
-/Users/metchio/Library/CloudStorage/Dropbox/ObsydianVault/Food/Dublin food - to try.md
+
+- [x] lobster / lobster roll - King Sitric ([[ristoranti vicini a casa]] https://maps.app.goo.gl/XaCty4aYz6LUybYT8) 
+- [x] Modern european - Bon Appetit (https://maps.app.goo.gl/G1SX7kvcvQmBMNEd8)[[ristoranti vicini a casa]] 
+- Asian
+	- [x] ramen - Nomo Ramen (https://maps.app.goo.gl/XCkqSb9kigq5fus69)
+	- [x] modern japanese - Daruma ([[ristoranti vicini a casa]] https://maps.app.goo.gl/uepWTbfGrByjETE86)
+	- [ ] sushi expensive - Matsukawa (https://maps.app.goo.gl/xtQeaxZ7xUiUmDgF7) 
+	- [ ] vietnamita - Madame Pho ([vietnamita](https://www.instagram.com/madamephodublin/) https://maps.app.goo.gl/c6UwhEWmXPURC3Gk9)
+	- [ ] Korean BBQ - Arisu, capel street (https://maps.app.goo.gl/jvn8zursFa5xZb8r6)
+	- [ ] Mongolian barbecue ([Stir fry all you can eat](https://www.instagram.com/p/DAy8uqms31t/) temple bar https://maps.app.goo.gl/sykeqXBjdP91Vi9G8)
+	- [x] Kajjal (indiano expensive a Malahide [[ristoranti vicini a casa]] (https://maps.app.goo.gl/JhyFZRC33rd6pBV87)
+	- [x] Lee's charming noodle , parnell street - [@leescharmingnoodles_dublin](https://www.instagram.com/leescharmingnoodles_dublin/ https://maps.app.goo.gl/kCoj484BXVpGxDY3A)
+	- [ ] Cinese high quality - [Big fan] (https://www.instagram.com/bigfanbao/) (https://maps.app.goo.gl/DXkA8jUYrRgxYXnK7)
+	- [x] Cinese hot pot - cheng du hotpot (https://maps.app.goo.gl/bB8ZmCJny8W5YsMp7)
+- Italiano (not pizza)
+	- [ ] sicilian food - Amuri (https://maps.app.goo.gl/29HJhuF9QZWToFU66)
+	- [x] pasta e pesce - Osteria Lucio (https://maps.app.goo.gl/4mPFuJZQTAuyfWt16)
+	- [ ] pasta al pesce - Il Vicoletto (https://maps.app.goo.gl/mxoAKaUFLwnNBjfGA)
+	- [ ] pasta, contorni e carne - I Monelli, Portobello (https://maps.app.goo.gl/1NmPQ9nkXwERw7CaA?g_st=ic)
+	- [ ] pasta - Sprezzatura (https://maps.app.goo.gl/HucbWcNcyHLSo5bh7)
+	- [ ] pasta e secondi - Crudo
+	- [ ] pasta - Grano
+	- [x] siciliano - Dolce sicily (https://maps.app.goo.gl/hPeaH6a8CqLCjEFR6)
+	- [x] that's amore [[ristoranti vicini a casa]] (https://maps.app.goo.gl/73MvVy9VshmEnYPu5)
+	- [ ] dolci e piatti milanesi - gloria osteria
+- Bakery
+	- [x] Perky's - Raheny (fanno i crookie) (https://maps.app.goo.gl/AXMnddqTV9i1V9GVA)
+	- [ ] Bloom's cafe (https://maps.app.goo.gl/SNAmrw63NncfZHf78)
+	- [ ] marshmallow bomb chocolate ([spilt milk](https://www.instagram.com/spiltmilkdub/) dublin 2) (https://maps.app.goo.gl/pdi8hK6MwjSDy9Sj7)
+	- [ ] eclaire ([french revolution](https://www.instagram.com/frenchrevolutiondublin/))(https://maps.app.goo.gl/zZHxkRRVy8P6YdSz6)
+	- [ ] empanadas - bakeology (https://maps.app.goo.gl/7ziQ7g7yJAkBZoa56)
+	- [ ] Russel street bakery, dietro croke park (https://maps.app.goo.gl/zELMs6hf7SpVSUcg8)
+	- [ ] Elliot's, smithfield oppure phibsborough (https://maps.app.goo.gl/eZnBdkcgZQ8ZDXaY9)
+	- [ ] Bang Bang, smithfield (https://maps.app.goo.gl/L4b7oyCfBfYJ6b1NA)
+	- [x] piccolo spot per asporto - The middle child, santry
+- Middle eastern
+	- [x] lebanese - Shouk, drumcondra
+	- [ ] lebanese - shaku maku
+- Bagels
+	- [ ] Ada coffee and bagels , Thomas St (https://maps.app.goo.gl/Sx9jCtZW4dhCV6Jo8)
+	- [ ] FatBabyBakes, NY style, only order in advance (https://www.instagram.com/fatbabybakes/)
+	- [ ] itsa Bagels, Middle Abbey Street (ingresso di Arnotts) (https://www.instagram.com/itsadublin/)
+- Pizza
+	- [x] La Papessa [[ristoranti vicini a casa]]
+	- [x] Boco (https://maps.app.goo.gl/CFqGqubYayrFW5Ly9)
+	- [x] Sano (Dame street) (https://maps.app.goo.gl/DV9fNcu2ivmrp7uV8)
+	- [x] Forno 500 (Dame street) (https://maps.app.goo.gl/MXFL1tDrErQxgZy68)
+	- [ ] Dublin pizza company (https://maps.app.goo.gl/G4qVpF6Kidffbmm7A)
+	- [x] Kodiak / Bonobo (https://maps.app.goo.gl/Luo3p6QuvxTPLSt26)
+	- [x] Rascals (https://maps.app.goo.gl/JFrNQZTjGzJFHBaq9)
+	- [ ] Reggie's - rathmines (https://maps.app.goo.gl/gUbgbBVE14RpuSwf7)
+	- [ ] [@unopizzadublin](https://www.instagram.com/unopizzadublin/) (Rathmines) (https://maps.app.goo.gl/smhRA7Dw5hGnsMjs6)
+	- [ ] Little Richards (Skerries) (https://maps.app.goo.gl/BqZgKRDdLoABDZZf8)
+	- [x] [nino](https://www.instagram.com/ninosdublin/) (pizzeria a Donabate) (https://maps.app.goo.gl/5MmMEHrYhYKBPNt16)
+	- [ ] nolita (https://maps.app.goo.gl/AyEuknNooFocxjyh7)
+	- [x] La Strada (https://maps.app.goo.gl/4rZkyoBpeua1kgfF6)
+	- [ ] Borgo (https://maps.app.goo.gl/kEfJW7LMQ3gSWwXG8)
+- Special occasions
+	- [ ] michelin starred - Chapter One(https://maps.app.goo.gl/Y9VGgdPtnMtTu2LV9)
+	- [ ] michelin starred - Mr Fox (https://maps.app.goo.gl/H8NHi5YZSWJBBJrX6)
+	- [x] french bistro - chez max (near dublin castle)(https://maps.app.goo.gl/vituChWy9ubtyp8b8)
+	- [ ] modern european / spanish inspired - Uno Mas (https://maps.app.goo.gl/5z5kFxB646PN6rGQ8)
+	- [ ] french style - Pichet (dame street)
+- Sandwiches / Burgers
+	- [x] fried chicken sandwich - Cluck chicken (https://maps.app.goo.gl/sdnvLsPYrxMphXux7)
+	- [x] pastrami - pig and the heifer (https://maps.app.goo.gl/JfNEXvwEQNXbATmz5)
+	- [ ] fried chicken sandwich - Mad Egg (https://maps.app.goo.gl/kYeCtrMKKsHdbbf47)
+	- [ ] korean fried chicken - chimac (https://maps.app.goo.gl/4QXfLRhLo5W8GnEW6)
+	- [x] smash burger (dash burger) (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
+	- [x] smash burger (Rolling stoves) ()[[ristoranti vicini a casa]]
+	- [ ] chicago beef sandwich come in the bear([hawksmoor](https://www.instagram.com/p/C86x3iUCHRp/))(https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
+	- [ ] Roast in a Roll ( [FX buckley victualler](https://www.instagram.com/fxbuckleyvictuallerandgrocer/) )(https://maps.app.goo.gl/wndKed8Rx8B4PWTbA)
+	- [ ] Fermented veggie / pickels - ([Fairmental](https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
+	- [ ] berlin style kebab ( [Chiya](https://www.instagram.com/chiyadublin/))(https://maps.app.goo.gl/V1NUzSBjGnq4SKxx8)
+	- [ ] Mambo Sambo( https://www.instagram.com/mambosambo_1/)(https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
+- Seasonal
+	- [x] Xmas Sando - Yellowdoor
+	- [ ] Xmas Sando - The Storyteller (https://maps.app.goo.gl/sUk5rQJRryzTNusKA)
+	- [x] Xmas Sando - Carved (https://maps.app.goo.gl/iAMVVryQCv2pbE3W6)
+	- [ ] Xmas Sando - Balgriffin Inn [[ristoranti vicini a casa]]
+- Steakhouses
+	- [ ] steakhouse pettinata ([FX buckley](https://www.thebuckleycollection.ie/crow-street) 6th steakhouse in the world)(https://maps.app.goo.gl/hA38V7nzZfPzibQg9)
+	- [ ] steakhouse pettinata 2  - Hawksmoor(https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
+	- [ ] steakhouse media - Bovinity https://www.instagram.com/bovinitydublin/ (https://maps.app.goo.gl/f51Zxe7BPLTKd6M7A)
+	- [x] steakhouse cheap - Boeuf and Frites https://maps.app.goo.gl/jyJqGRvEUeWshknKA
+
+- [ ] pizza al taglio:
+	- [ ] [bambino](https://www.instagram.com/bambino_dublin/)(https://maps.app.goo.gl/rZyaKVop5rm9vbB57)
+	- [ ] [Vice](https://www.instagram.com/vicedublin/)(https://maps.app.goo.gl/FnMnPYdt7dDEqbwD8)
+	- [x] [Mani](https://maps.app.goo.gl/A5Z9pqARoWpSBoKh8)
+	- [ ] [Doom slice](https://www.instagram.com/doomslice.pizza/)(https://maps.app.goo.gl/HFc7Jup1xrX3HuRV6)
+	- [x] Squaredish (https://maps.app.goo.gl/xSXaLjVfDKRtSWQaA)
+	- [ ] DiFontaines (https://maps.app.goo.gl/q1gkSFoYXyJ9WGBq6)
+- Pub Grub
+	- [x] [o'connells](https://www.oconnellshowth.ie/), Howth(https://maps.app.goo.gl/VHBzCKd2R2pbxMMt5)
+	- [ ] [The Old Spot](https://www.instagram.com/the_old_spot_dublin/), Grand canal dock (https://maps.app.goo.gl/YucxvQj59YgU7w6z5)
+	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin
+	- [ ] Hole in the Wall, Castleknock
+	- [ ] international pub food - Krewe, Capel street
+	- [ ] Good chowder and fish - Wrights Anglers Rest, Phonix park (https://maps.app.goo.gl/8yzLQuDCpQix7XYt5)
+- Brunch
+	- [x] classic - Pog(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
+	- [x] middle eastern inspired - brother hubbard(https://maps.app.goo.gl/qEHatAb1eeZatRhE6)
+	- [ ] bottomless mimosa - ALT at Wren Urban Nest ()
+- Barbecue
+	- [x] Pitt bros BBQ ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/Mh5eBCx19jDrUktJ9)
+	- [ ] - [x] brazilian bbq all you can eat - Bah33(https://maps.app.goo.gl/2tDZ9zbXRHNdB3mw5)
+- Mexican
+	- [x] food truck a herbert park, oppure a mountjoy square - El Grito
+	- [ ] taqueria north city - Pickosito
+	- [ ] drogheda - Gringo
+	- [ ] burrito in centro - Pablo piccante burrito bar
