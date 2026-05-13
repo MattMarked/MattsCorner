@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { applyConfiguredShift } from '@/lib/coordinates';
+import { resolveGoogleMapsUrl } from '@/lib/url-resolver';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -9,116 +10,15 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Missing URL parameter' }, { status: 400 });
   }
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: 'Google Maps API key not configured' }, { status: 500 });
-  }
-
   try {
-    // First, follow the redirect to get the full URL with place information
-    const redirectResponse = await fetch(mapsUrl, {
-      method: 'HEAD',
-      redirect: 'follow'
-    });
-
-    let finalUrl = redirectResponse.url || mapsUrl;
+    // Resolve coordinates from the URL using our zero-cost resolver
+    const coords = await resolveGoogleMapsUrl(mapsUrl);
     
-    // Try to extract place ID from the URL
-    let placeId = null;
-    const placeIdMatch = finalUrl.match(/place\/[^\/]+\/data=.*!1m(\d+)!1m(\d+)!1s([^!]+)/);
-    if (placeIdMatch) {
-      placeId = placeIdMatch[3];
-    } else {
-      // Alternative pattern for place IDs
-      const altPlaceIdMatch = finalUrl.match(/data=.*!1s([^!]+)!/);
-      if (altPlaceIdMatch) {
-        placeId = altPlaceIdMatch[1];
-      }
-    }
-
-    // If we have a place ID, use Places API to get coordinates
-    if (placeId && placeId.startsWith('0x')) {
-      // Convert hex place ID to coordinates using geocoding
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=${apiKey}`;
-      
-      const geocodeResponse = await fetch(geocodeUrl);
-      const geocodeData = await geocodeResponse.json();
-
-      if (geocodeData.status === 'OK' && geocodeData.results.length > 0) {
-        const location = geocodeData.results[0].geometry.location;
-        const originalCoords = {
-          lat: location.lat,
-          lng: location.lng
-        };
-        const shiftedCoords = applyConfiguredShift(originalCoords);
-        return NextResponse.json({
-          coordinates: shiftedCoords
-        });
-      }
-    }
-
-    // Fallback: Try to extract coordinates directly from URL with multiple patterns
-    // Pattern 1: @lat,lng,zoom (most common)
-    let coordsMatch = finalUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)(?:,\d+)?/);
-    if (coordsMatch) {
-      const originalCoords = {
-        lat: parseFloat(coordsMatch[1]),
-        lng: parseFloat(coordsMatch[2])
-      };
-      const shiftedCoords = applyConfiguredShift(originalCoords);
+    if (coords) {
+      const shiftedCoords = applyConfiguredShift(coords);
       return NextResponse.json({
         coordinates: shiftedCoords
       });
-    }
-
-    // Pattern 2: !3d and !4d parameters (alternative format)
-    const latMatch = finalUrl.match(/!3d(-?\d+\.\d+)/);
-    const lngMatch = finalUrl.match(/!4d(-?\d+\.\d+)/);
-    if (latMatch && lngMatch) {
-      const originalCoords = {
-        lat: parseFloat(latMatch[1]),
-        lng: parseFloat(lngMatch[1])
-      };
-      const shiftedCoords = applyConfiguredShift(originalCoords);
-      return NextResponse.json({
-        coordinates: shiftedCoords
-      });
-    }
-
-    // Pattern 3: ll= parameter (less common)
-    coordsMatch = finalUrl.match(/[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)/);
-    if (coordsMatch) {
-      const originalCoords = {
-        lat: parseFloat(coordsMatch[1]),
-        lng: parseFloat(coordsMatch[2])
-      };
-      const shiftedCoords = applyConfiguredShift(originalCoords);
-      return NextResponse.json({
-        coordinates: shiftedCoords
-      });
-    }
-
-    // If all else fails, try to extract place name and geocode it
-    const placeNameMatch = finalUrl.match(/\/place\/([^\/]+)/);
-    if (placeNameMatch) {
-      const placeName = decodeURIComponent(placeNameMatch[1]).replace(/\+/g, ' ');
-      
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(placeName + ', Dublin, Ireland')}&key=${apiKey}`;
-      
-      const geocodeResponse = await fetch(geocodeUrl);
-      const geocodeData = await geocodeResponse.json();
-
-      if (geocodeData.status === 'OK' && geocodeData.results.length > 0) {
-        const location = geocodeData.results[0].geometry.location;
-        const originalCoords = {
-          lat: location.lat,
-          lng: location.lng
-        };
-        const shiftedCoords = applyConfiguredShift(originalCoords);
-        return NextResponse.json({
-          coordinates: shiftedCoords
-        });
-      }
     }
 
     // If nothing works, return null coordinates

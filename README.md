@@ -10,15 +10,16 @@ A beautiful, interactive web application for discovering and tracking Dublin res
 ## ✨ Features
 
 - 📊 **65 Dublin restaurants** parsed from markdown with smart categorization
-- 🗺️ **Interactive map interface** (Google Maps integration ready)
+- 🗺️ **Interactive map interface** powered by Leaflet.js and OpenStreetMap
 - 🔍 **Advanced filtering** by category, status, and search
 - 📱 **Responsive design** - works perfectly on all devices
-- 📈 **Real-time statistics** - track your food journey (35% completion rate!)
-- 🏷️ **8 cuisine categories** - Asian, Italian, Pizza, Bakery, and more
-- ✅ **Progress tracking** - 23 visited, 42 to try
+- 📈 **Real-time statistics** - track your food journey
+- 🏷️ **Multiple cuisine categories** - Asian, Italian, Pizza, Bakery, and more
+- ✅ **Progress tracking** - Visited vs To Try
 - 🔗 **External links** - Google Maps and Instagram integration
 - 💾 **SQLite database** with full CRUD operations
 - 🚀 **RESTful API** endpoints for all data operations
+- 🆓 **Zero-cost architecture** - No Google Maps API keys required
 
 ## 🛠️ Tech Stack
 
@@ -26,7 +27,7 @@ A beautiful, interactive web application for discovering and tracking Dublin res
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Database:** SQLite with better-sqlite3
-- **Maps:** Google Maps API (configuration required)
+- **Maps:** Leaflet.js with OpenStreetMap (Zero-cost)
 - **Deployment:** Vercel-ready
 
 ## 🚀 Quick Start
@@ -53,9 +54,8 @@ A beautiful, interactive web application for discovering and tracking Dublin res
    cp .env.example .env.local
    ```
    
-   Add your Google Maps API key:
+   Configure your database:
    ```env
-   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
    DATABASE_URL=./database/restaurants.db
    ```
 
@@ -88,29 +88,26 @@ A beautiful, interactive web application for discovering and tracking Dublin res
 ### Statistics
 - `GET /api/stats` - Get restaurant statistics
 
-## 🗺️ Google Maps Setup
+## 🗺️ Map Integration
 
-1. **Get a Google Maps API Key**
-   - Go to [Google Cloud Console](https://console.cloud.google.com/)
-   - Create a new project or select existing
-   - Enable these APIs:
-     - Maps JavaScript API
-     - Places API
-     - Geocoding API
+This project uses **Leaflet.js** and **OpenStreetMap** for map visualization. 
 
-2. **Configure API Key**
-   - Add your API key to `.env.local`
-   - Restrict the key to your domain for security
+### How it works:
+1. Restaurant data is parsed from `src/data/dublin-food.md`.
+2. Google Maps URLs are automatically resolved to extract latitude and longitude.
+3. Coordinates are stored in the local SQLite database.
+4. The map displays these locations as interactive markers.
 
-3. **The map will automatically load** with restaurant markers!
+**No API keys are required for the map functionality.**
 
-## 📊 Current Stats
+## 📊 Data Source
 
-- **Total Restaurants:** 65
-- **Visited:** 23 (35% completion rate)
-- **To Try:** 42
-- **Categories:** 8
-- **Data Source:** Markdown file with Google Maps URLs
+The app automatically parses restaurant data from the markdown file (`src/data/dublin-food.md`), extracting:
+- Restaurant names and descriptions
+- Completion status (visited/to try)
+- Categories (Asian, Italian, Pizza, etc.)
+- Google Maps URLs
+- Instagram links
 
 ## 🏗️ Project Structure
 
@@ -123,26 +120,18 @@ MattsCorner/
 │   │   ├── layout.tsx      # Root layout
 │   │   └── page.tsx        # Home page
 │   ├── components/         # React components
-│   │   ├── RestaurantMap.tsx
+│   │   ├── RestaurantMap.tsx # Map wrapper (dynamic import)
+│   │   ├── MapInner.tsx      # Leaflet implementation
 │   │   └── RestaurantFilters.tsx
 │   ├── lib/               # Utilities and database
 │   │   ├── database.ts    # SQLite operations
-│   │   └── parser.ts      # Markdown parser
+│   │   ├── parser.ts      # Markdown parser
+│   │   └── url-resolver.ts # URL to coordinate resolver
 │   └── data/             # Data files
 │       └── dublin-food.md # Restaurant data
 ├── database/             # SQLite database
 └── public/              # Static assets
 ```
-
-## 🔄 Data Management
-
-The app automatically parses restaurant data from the markdown file, extracting:
-- Restaurant names and descriptions
-- Completion status (visited/to try)
-- Categories (Asian, Italian, Pizza, etc.)
-- Google Maps URLs
-- Instagram links
-- Hierarchical organization
 
 ## 🚀 Deployment
 
@@ -152,17 +141,8 @@ The app automatically parses restaurant data from the markdown file, extracting:
    - Import your GitHub repository in Vercel
    - It will auto-detect Next.js configuration
 
-2. **Add environment variables**
-   - Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` in Vercel dashboard
-
-3. **Deploy**
+2. **Deploy**
    - Vercel will automatically deploy on every push to main
-
-The app is fully Vercel-optimized with:
-- Automatic builds
-- Edge functions for API routes
-- Static optimization
-- Global CDN
 
 ## 🤝 Contributing
 
@@ -175,16 +155,6 @@ The app is fully Vercel-optimized with:
 ## 📝 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🎯 Future Enhancements
-
-- [ ] Real Google Maps integration with custom markers
-- [ ] Restaurant reviews and ratings
-- [ ] Photo uploads
-- [ ] Social sharing features
-- [ ] Mobile app (React Native)
-- [ ] Push notifications for new restaurants
-- [ ] Advanced analytics dashboard
 
 ---
 

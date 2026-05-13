@@ -52,7 +52,7 @@ async function followRedirects(url: string): Promise<string | null> {
 /**
  * Extracts coordinates from various Google Maps URL patterns
  */
-function extractCoordinatesFromUrl(url: string): Coordinates | null {
+export function extractCoordinatesFromUrl(url: string): Coordinates | null {
   if (!url) return null;
   
   try {

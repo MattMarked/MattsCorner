@@ -1,4 +1,11 @@
 import crypto from 'crypto';
+import { resolveGoogleMapsUrl, batchResolveUrls, type Coordinates, extractCoordinatesFromUrl as extractCoordinatesFromMapsUrl } from './url-resolver';
+
+// Dublin city center coordinates
+export const DUBLIN_CENTER = {
+  lat: 53.3498,
+  lng: -6.2603
+};
 
 export interface Restaurant {
   id: string;
@@ -14,12 +21,7 @@ export interface Restaurant {
   };
 }
 
-export const DUBLIN_CENTER = {
-  lat: 53.3485, //53.3485°N 6.2531°W
-  lng: 6.2531
-}
-
-export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[] {
+export async function parseMarkdownToRestaurants(markdownContent: string, resolveCoordinates: boolean = true): Promise<Restaurant[]> {
   const restaurants: Restaurant[] = [];
   const lines = markdownContent.split('\n');
   
@@ -62,6 +64,13 @@ export function parseMarkdownToRestaurants(markdownContent: string): Restaurant[
   }
   
   console.log(`Total restaurants parsed: ${restaurants.length}`);
+  
+  // Resolve coordinates for all restaurants if requested
+  if (resolveCoordinates && restaurants.length > 0) {
+    console.log('Resolving coordinates for Google Maps URLs...');
+    await resolveRestaurantCoordinates(restaurants);
+  }
+  
   return restaurants;
 }
 
@@ -73,11 +82,15 @@ function parseRestaurantItem(content: string, category: string): Restaurant | nu
     // Extract links (both in markdown format [text](url) and plain URLs)
     const links: string[] = [];
     
-    // Extract markdown links
+    // Extract markdown links and capture link text for potential use as name
     const markdownLinkRegex = /\[([^\]]*)\]\(([^)]+)\)/g;
+    const extractedLinkTexts: string[] = [];
     let match;
     while ((match = markdownLinkRegex.exec(cleanContent)) !== null) {
       links.push(match[2]);
+      if (match[1].trim()) {
+        extractedLinkTexts.push(match[1].trim());
+      }
     }
     
     // Remove markdown links from content
@@ -109,6 +122,15 @@ function parseRestaurantItem(content: string, category: string): Restaurant | nu
     } else if (parts.length === 1) {
       // Only one part, it's the name
       nameWithNote = parts[0];
+    } else if (parts.length === 0) {
+      // No plain text, try to use first link text as name
+      if (extractedLinkTexts.length > 0) {
+        nameWithNote = extractedLinkTexts[0];
+        description = '';
+      } else {
+        console.warn(`Skipping invalid restaurant item: ${content}`);
+        return null;
+      }
     } else {
       // Invalid format, skip
       console.warn(`Skipping invalid restaurant item: ${content}`);
@@ -131,7 +153,7 @@ function parseRestaurantItem(content: string, category: string): Restaurant | nu
     let instagramUrl = '';
     
     for (const link of links) {
-      if (link.includes('google.com/maps') || link.includes('maps.google.com') || link.includes('goo.gl/maps')) {
+      if (link.includes('google.com/maps') || link.includes('maps.google.com') || link.includes('goo.gl/maps') || link.includes('maps.app.goo.gl')) {
         googleMapsUrl = link;
       } else if (link.includes('instagram.com')) {
         instagramUrl = link;
@@ -181,6 +203,47 @@ function parseRestaurantItem(content: string, category: string): Restaurant | nu
   }
 }
 
+/**
+ * Resolves coordinates for restaurants that don't have them
+ */
+async function resolveRestaurantCoordinates(restaurants: Restaurant[]): Promise<void> {
+  // Find restaurants that need coordinate resolution
+  const restaurantsNeedingCoords = restaurants.filter(r => !r.coordinates && r.googleMapsUrl);
+  
+  if (restaurantsNeedingCoords.length === 0) {
+    console.log('All restaurants already have coordinates');
+    return;
+  }
+  
+  console.log(`Resolving coordinates for ${restaurantsNeedingCoords.length} restaurants...`);
+  
+  // Extract unique URLs to avoid duplicate work
+  const uniqueUrls = Array.from(new Set(restaurantsNeedingCoords.map(r => r.googleMapsUrl)));
+  
+  // Batch resolve all URLs
+  const resolvedCoords = await batchResolveUrls(uniqueUrls);
+  
+  // Apply resolved coordinates back to restaurants
+  let resolvedCount = 0;
+  let fallbackCount = 0;
+  
+  for (const restaurant of restaurantsNeedingCoords) {
+    const coords = resolvedCoords.get(restaurant.googleMapsUrl);
+    
+    if (coords) {
+      restaurant.coordinates = coords;
+      resolvedCount++;
+    } else {
+      // Fallback to Dublin center if resolution failed
+      console.warn(`Could not resolve coordinates for: ${restaurant.name}, using Dublin center`);
+      restaurant.coordinates = { ...DUBLIN_CENTER };
+      fallbackCount++;
+    }
+  }
+  
+  console.log(`✅ Resolved ${resolvedCount} coordinates, ${fallbackCount} fallbacks to Dublin center`);
+}
+
 // Helper function to clean text content
 function cleanText(text: string): string {
   return text
@@ -189,55 +252,5 @@ function cleanText(text: string): string {
     .trim();
 }
 
-// Helper function to extract coordinates from Google Maps URLs
-export function extractCoordinatesFromMapsUrl(url: string): { lat: number; lng: number } | null {
-  if (!url) return null;
-  
-  try {
-    // Try different Google Maps URL patterns
-    
-    // Pattern 1: @lat,lng,zoom
-    let match = url.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-    if (match) {
-      return {
-        lat: parseFloat(match[1]),
-        lng: parseFloat(match[2])
-      };
-    }
-    
-    // Pattern 2: ll=lat,lng
-    match = url.match(/ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-    if (match) {
-      return {
-        lat: parseFloat(match[1]),
-        lng: parseFloat(match[2])
-      };
-    }
-    
-    // Pattern 3: q=lat,lng
-    match = url.match(/q=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-    if (match) {
-      return {
-        lat: parseFloat(match[1]),
-        lng: parseFloat(match[2])
-      };
-    }
-    
-    // Pattern 4: destination coordinates
-    match = url.match(/destination=(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-    if (match) {
-      return {
-        lat: parseFloat(match[1]),
-        lng: parseFloat(match[2])
-      };
-    }
-    
-  } catch (error) {
-    console.error('Error extracting coordinates from URL:', error);
-  }
-  
-  return null;
-}
-
 // Export for testing
-export { parseRestaurantItem };
+export { parseRestaurantItem, resolveRestaurantCoordinates };
