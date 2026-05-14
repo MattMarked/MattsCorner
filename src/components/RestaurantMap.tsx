@@ -64,7 +64,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
     if (restaurantsWithCoords.length === 0) {
       return {
         center: DUBLIN_CENTER,
-        zoom: 10
+        zoom: 15
       };
     }
 
