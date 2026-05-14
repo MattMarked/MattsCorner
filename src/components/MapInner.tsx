@@ -38,7 +38,7 @@ function ChangeView({ center, zoom, restaurants }: { center: [number, number], z
   useEffect(() => {
     if (restaurants.length > 0) {
       const bounds = L.latLngBounds(restaurants.map(r => [r.coordinates.lat, r.coordinates.lng]));
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 18 });
     } else {
       map.setView(center, zoom);
     }
