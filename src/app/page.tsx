@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import RestaurantMap from '@/components/RestaurantMap';
-import RestaurantFilters from '@/components/RestaurantFilters';
 import { Restaurant } from '@/lib/parser';
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -18,16 +16,12 @@ export default function Home() {
   useEffect(() => {
     Promise.all([
       fetch('/api/restaurants').then(res => res.json()),
-      fetch('/api/categories').then(res => res.json()),
       fetch('/api/stats').then(res => res.json())
     ])
-    .then(([restaurantsRes, categoriesRes, statsRes]) => {
+    .then(([restaurantsRes, statsRes]) => {
       if (restaurantsRes.success) {
         setRestaurants(restaurantsRes.data);
         setFilteredRestaurants(restaurantsRes.data);
-      }
-      if (categoriesRes.success) {
-        setCategories(categoriesRes.data);
       }
       if (statsRes.success) {
         setStats(statsRes.data);
@@ -41,21 +35,9 @@ export default function Home() {
   }, []);
 
   const handleFilterChange = (filters: {
-    category?: string;
-    status?: 'all' | 'completed' | 'pending';
     search?: string;
   }) => {
     let filtered = [...restaurants];
-
-    if (filters.category) {
-      filtered = filtered.filter(r => r.category === filters.category);
-    }
-
-    if (filters.status && filters.status !== 'all') {
-      filtered = filtered.filter(r => 
-        filters.status === 'completed' ? r.isCompleted : !r.isCompleted
-      );
-    }
 
     if (filters.search) {
       const searchLower = filters.search.toLowerCase();
@@ -73,7 +55,6 @@ export default function Home() {
     setRefreshMessage(null);
     
     try {
-      // Call refresh API
       const refreshResponse = await fetch('/api/restaurants', {
         method: 'POST',
         headers: {
@@ -85,10 +66,8 @@ export default function Home() {
       const refreshResult = await refreshResponse.json();
       
       if (refreshResult.success) {
-        // Refresh all data after successful refresh
-        const [restaurantsRes, categoriesRes, statsRes] = await Promise.all([
+        const [restaurantsRes, statsRes] = await Promise.all([
           fetch('/api/restaurants').then(res => res.json()),
-          fetch('/api/categories').then(res => res.json()),
           fetch('/api/stats').then(res => res.json())
         ]);
         
@@ -96,35 +75,30 @@ export default function Home() {
           setRestaurants(restaurantsRes.data);
           setFilteredRestaurants(restaurantsRes.data);
         }
-        if (categoriesRes.success) {
-          setCategories(categoriesRes.data);
-        }
         if (statsRes.success) {
           setStats(statsRes.data);
         }
         
-        setRefreshMessage(`✅ Successfully refreshed ${refreshResult.count} restaurants`);
+        setRefreshMessage(`✅ Refreshed!`);
       } else {
         setRefreshMessage(`❌ Error: ${refreshResult.error}`);
       }
     } catch (error) {
       console.error('Error refreshing data:', error);
-      setRefreshMessage('❌ Failed to refresh data');
+      setRefreshMessage('❌ Failed to refresh');
     } finally {
       setRefreshing(false);
-      // Clear message after 3 seconds
       setTimeout(() => setRefreshMessage(null), 3000);
     }
   };
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
-    // We can still keep the handler if needed for other logic, 
-    // but for now it does nothing as we use Leaflet Popups
+    // Popup handled by Leaflet
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading Matt&apos;s Corner...</p>
@@ -134,9 +108,9 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col bg-white">
+    <main className="min-h-screen flex flex-col bg-white overflow-hidden">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-50">
+      <header className="bg-white border-b z-50">
         <div className="w-full px-6 py-3">
           <div className="flex items-center justify-between">
             <div>
@@ -146,7 +120,7 @@ export default function Home() {
             
             <div className="flex items-center gap-4">
               {refreshMessage && (
-                <span className="text-sm font-medium animate-fade-in">
+                <span className="text-sm font-medium">
                   {refreshMessage}
                 </span>
               )}
@@ -159,14 +133,7 @@ export default function Home() {
                     : 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
                 }`}
               >
-                {refreshing ? (
-                  <>
-                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-400"></div>
-                    Refreshing...
-                  </>
-                ) : (
-                  <>🔄 Refresh</>
-                )}
+                {refreshing ? 'Refreshing...' : '🔄 Refresh'}
               </button>
             </div>
           </div>
@@ -174,15 +141,15 @@ export default function Home() {
       </header>
 
       {/* Main Content - Full Width Map */}
-      <div className="flex-1 relative min-h-[500px]">
+      <div className="flex-1 relative">
         <RestaurantMap
           restaurants={filteredRestaurants}
           onRestaurantClick={handleRestaurantClick}
         />
         
-        {/* Floating Search (Optional, since filters were removed) */}
+        {/* Floating Search */}
         <div className="absolute top-4 left-4 z-[1000] w-64">
-          <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg border">
+          <div className="bg-white p-2 rounded-lg shadow-lg border">
             <input
               type="text"
               placeholder="Search restaurants..."
@@ -195,10 +162,10 @@ export default function Home() {
         {/* Floating Stats Counter */}
         {stats && (
           <div className="absolute bottom-6 left-6 z-[1000] flex gap-2">
-            <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
+            <div className="bg-white px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
               <span className="text-blue-700">{stats.total}</span> spots
             </div>
-            <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
+            <div className="bg-white px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
               <span className="text-green-700">{stats.completed}</span> visited
             </div>
           </div>

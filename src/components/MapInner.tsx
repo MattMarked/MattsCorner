@@ -6,7 +6,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Restaurant } from '@/lib/parser';
 
 // Fix for default icon issues with Leaflet in Next.js
-// This is necessary because Webpack/Next.js changes the paths to the marker images
 if (typeof window !== 'undefined') {
   // @ts-ignore
   delete L.Icon.Default.prototype._getIconUrl;
@@ -33,17 +32,9 @@ function ChangeView({ center, zoom, restaurants }: { center: [number, number], z
   const map = useMap();
   
   useEffect(() => {
-    // Small timeout to ensure the container is fully rendered
-    const timer = setTimeout(() => {
-      map.invalidateSize();
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [map]);
-
-  useEffect(() => {
     if (restaurants.length > 0) {
       const bounds = L.latLngBounds(restaurants.map(r => [r.coordinates.lat, r.coordinates.lng]));
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 18 });
+      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15 });
     } else {
       map.setView(center, zoom);
     }
@@ -53,7 +44,6 @@ function ChangeView({ center, zoom, restaurants }: { center: [number, number], z
 }
 
 export default function MapInner({ restaurants, center, zoom, onRestaurantClick }: MapInnerProps) {
-  // Initial center and zoom
   const initialCenter: [number, number] = [center.lat, center.lng];
 
   return (

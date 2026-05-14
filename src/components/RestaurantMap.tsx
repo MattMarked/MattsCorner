@@ -43,13 +43,6 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
           ...restaurant,
           coordinates: restaurant.coordinates
         });
-      } else {
-        // Fallback to Dublin center if no coordinates
-        console.warn(`Restaurant ${restaurant.name} has no coordinates, using Dublin center`);
-        restaurantsWithCoordinates.push({
-          ...restaurant,
-          coordinates: DUBLIN_CENTER
-        });
       }
     }
     
@@ -66,33 +59,52 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
     }
   }, [restaurants, processRestaurants]);
 
-  // Default settings
-  const mapSettings = {
-    center: DUBLIN_CENTER,
-    zoom: 12
-  };
+  // Calculate map center and bounds
+  const mapSettings = useMemo(() => {
+    if (restaurantsWithCoords.length === 0) {
+      return {
+        center: DUBLIN_CENTER,
+        zoom: 12
+      };
+    }
+
+    // Calculate center from bounds
+    const bounds = {
+      minLat: Math.min(...restaurantsWithCoords.map(r => r.coordinates.lat)),
+      maxLat: Math.max(...restaurantsWithCoords.map(r => r.coordinates.lat)),
+      minLng: Math.min(...restaurantsWithCoords.map(r => r.coordinates.lng)),
+      maxLng: Math.max(...restaurantsWithCoords.map(r => r.coordinates.lng)),
+    };
+
+    const center = {
+      lat: (bounds.minLat + bounds.maxLat) / 2,
+      lng: (bounds.minLng + bounds.maxLng) / 2,
+    };
+
+    return { center, zoom: 12 };
+  }, [restaurantsWithCoords]);
 
   return (
-    <div className="h-full w-full overflow-hidden">
+    <div className="h-[calc(100vh-80px)] w-full overflow-hidden border">
       {isLoadingCoords && (
         <div className="absolute top-0 left-0 right-0 z-[2000] bg-blue-50/80 backdrop-blur-sm p-1 text-center">
           <div className="flex items-center justify-center gap-2">
             <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-600"></div>
-            <span className="text-[10px] text-blue-700 font-medium">Loading locations...</span>
+            <span className="text-xs text-blue-700">Loading locations...</span>
           </div>
         </div>
       )}
       
       {error && (
         <div className="absolute top-0 left-0 right-0 z-[2000] bg-red-50/80 backdrop-blur-sm p-1 text-center">
-          <span className="text-[10px] text-red-700 font-medium">{error}</span>
+          <span className="text-xs text-red-700">{error}</span>
         </div>
       )}
 
       <MapInner 
         restaurants={restaurantsWithCoords} 
         center={mapSettings.center} 
-        zoom={18}
+        zoom={mapSettings.zoom}
         onRestaurantClick={onRestaurantClick}
       />
     </div>
