@@ -174,7 +174,7 @@ export default function Home() {
       </header>
 
       {/* Main Content - Full Width Map */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative min-h-[500px]">
         <RestaurantMap
           restaurants={filteredRestaurants}
           onRestaurantClick={handleRestaurantClick}

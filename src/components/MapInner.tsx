@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import { Restaurant } from '@/lib/parser';
 
 // Fix for default icon issues with Leaflet in Next.js
@@ -33,6 +32,14 @@ interface MapInnerProps {
 function ChangeView({ center, zoom, restaurants }: { center: [number, number], zoom: number, restaurants: RestaurantWithCoords[] }) {
   const map = useMap();
   
+  useEffect(() => {
+    // Small timeout to ensure the container is fully rendered
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [map]);
+
   useEffect(() => {
     if (restaurants.length > 0) {
       const bounds = L.latLngBounds(restaurants.map(r => [r.coordinates.lat, r.coordinates.lng]));
