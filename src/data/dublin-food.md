@@ -73,6 +73,8 @@
 	- [ ] Fermented veggie / pickels - Fairmental | (https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
 	- [ ] berlin style kebab - Chiya | https://www.instagram.com/chiyadublin/)(https://maps.app.goo.gl/V1NUzSBjGnq4SKxx8)
 	- [ ] Mambo Sambo| https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
+	- [x] breakfast roll - Declan and Dolan
+	- [ ] breakfast roll - Woodmill, Artane
 - Seasonal
 	- [x] Xmas Sando - Yellowdoor
 	- [ ] Xmas Sando - The Storyteller | (https://maps.app.goo.gl/sUk5rQJRryzTNusKA)

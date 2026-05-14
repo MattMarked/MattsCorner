@@ -61,8 +61,8 @@ export async function parseMarkdownToRestaurants(markdownContent: string, resolv
       continue;
     }
     
-    // Detect categories: starts with - followed by uppercase letter
-    const categoryMatch = trimmedLine.match(/^- ([A-Z].*)/);
+    // Detect categories: starts with - followed by text (not a restaurant checkbox)
+    const categoryMatch = trimmedLine.match(/^- ([^\[].*)/);
     if (categoryMatch) {
       currentCategory = categoryMatch[1].trim();
       continue;

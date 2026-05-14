@@ -10,27 +10,31 @@ interface IconMapping {
 const ICON_STRATEGY: Record<string, IconMapping> = {
   pizza: {
     hex: '1F355', // Slice of Pizza
-    keywords: ['pizza', 'pizzeria']
+    keywords: ['pizza', 'pizzeria', 'taglio', 'dough']
+  },
+  steak: {
+    hex: '1F969', // Cut of Meat
+    keywords: ['steak', 'steakhouse', 'grill', 'bbq', 'barbecue', 'meat']
   },
   asian: {
     hex: '1F35C', // Steaming Bowl
-    keywords: ['ramen', 'sushi', 'noodle', 'chinese', 'thai', 'japanese', 'vietnamese', 'korean', 'asian', 'dim sum', 'bao']
+    keywords: ['ramen', 'sushi', 'noodle', 'chinese', 'thai', 'japanese', 'vietnamese', 'korean', 'asian', 'dim sum', 'bao', 'hot pot', 'pho', 'hotpot']
   },
   bakery: {
     hex: '1F950', // Croissant
-    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'bagel', 'cake', 'sourdough']
+    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'bagel', 'cake', 'sourdough', 'eclaire', 'empanadas', 'bakeology']
   },
   italian: {
     hex: '1F35D', // Spaghetti
-    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria']
+    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'sicilian']
   },
   burgers: {
     hex: '1F354', // Hamburger
-    keywords: ['burger', 'steakhouse', 'grill', 'bbq', 'barbecue']
+    keywords: ['burger', 'hamburger', 'smash', 'sando']
   },
   mexican: {
     hex: '1F32E', // Taco
-    keywords: ['taco', 'burrito', 'mexican', 'nachos', 'guacamole', 'salsa']
+    keywords: ['taco', 'burrito', 'mexican', 'nachos', 'guacamole', 'salsa', 'taqueria']
   },
   coffee: {
     hex: '2615', // Hot Beverage
@@ -38,15 +42,15 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   sweet: {
     hex: '1F370', // Shortcake
-    keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'waffle']
+    keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'waffle', 'cookie']
   },
   pub: {
     hex: '1F37A', // Beer Mug
-    keywords: ['pub', 'bar', 'beer', 'wine', 'cocktail', 'taproom', 'distillery']
+    keywords: ['pub', 'bar', 'beer', 'wine', 'cocktail', 'taproom', 'distillery', 'grub']
   },
   seafood: {
     hex: '1F41F', // Fish
-    keywords: ['fish', 'seafood', 'lobster', 'oyster', 'crab']
+    keywords: ['fish', 'seafood', 'lobster', 'oyster', 'crab', 'chowder']
   },
   sandwich: {
     hex: '1F96A', // Sandwich
