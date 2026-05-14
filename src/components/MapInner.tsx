@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Restaurant } from '@/lib/parser';
-import { getRestaurantIconHex } from '@/lib/icon-strategy';
+import { getRestaurantEmoji } from '@/lib/icon-strategy';
 
 // Fix for default icon issues with Leaflet in Next.js
 if (typeof window !== 'undefined') {
@@ -86,25 +86,25 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
         const position: L.LatLngExpression = [restaurant.coordinates.lat, restaurant.coordinates.lng];
         latLngs.push(position);
 
-        // Use the new icon selection strategy
-        const hex = getRestaurantIconHex(restaurant.name, restaurant.description, restaurant.category);
-        const iconUrl = `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${hex}.svg`;
+        // Use the new emoji selection strategy
+        const emoji = getRestaurantEmoji(restaurant.name, restaurant.description, restaurant.category);
 
         const customIcon = L.divIcon({
           html: `<div style="
-            width: 60px; 
-            height: 60px; 
+            width: 50px; 
+            height: 50px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5));
+            font-size: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
           ">
-            <img src="${iconUrl}" style="width: 50px; height: 50px;" alt="${restaurant.category}" />
+            ${emoji}
           </div>`,
           className: 'custom-emoji-marker',
-          iconSize: [60, 60],
-          iconAnchor: [30, 30],
-          popupAnchor: [0, -25],
+          iconSize: [50, 50],
+          iconAnchor: [25, 25],
+          popupAnchor: [0, -20],
         });
 
         const marker = L.marker(position, { icon: customIcon });

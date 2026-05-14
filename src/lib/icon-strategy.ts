@@ -1,77 +1,133 @@
 /**
- * Strategy for selecting OpenMoji icons based on restaurant metadata.
+ * Strategy for selecting emojis based on restaurant metadata.
  */
 
 interface IconMapping {
-  hex: string;
+  emoji: string;
   keywords: string[];
 }
 
 const ICON_STRATEGY: Record<string, IconMapping> = {
   pizza: {
-    hex: '1F355', // Slice of Pizza
+    emoji: '🍕',
     keywords: ['pizza', 'pizzeria', 'taglio', 'dough']
   },
   steak: {
-    hex: '1F969', // Cut of Meat
-    keywords: ['steak', 'steakhouse', 'grill', 'bbq', 'barbecue', 'meat']
+    emoji: '🥩',
+    keywords: ['steak', 'steakhouse', 'sirloin', 'ribeye', 'fillet']
   },
-  asian: {
-    hex: '1F35C', // Steaming Bowl
-    keywords: ['ramen', 'sushi', 'noodle', 'chinese', 'thai', 'japanese', 'vietnamese', 'korean', 'asian', 'dim sum', 'bao', 'hot pot', 'pho', 'hotpot']
+  bbq: {
+    emoji: '🍖',
+    keywords: ['bbq', 'barbecue', 'grill', 'ribs', 'korean bbq', 'smoked', 'brisket']
+  },
+  ramen: {
+    emoji: '🍜',
+    keywords: ['ramen', 'noodle', 'pho', 'udon', 'soba', 'thukpa']
+  },
+  sushi: {
+    emoji: '🍣',
+    keywords: ['sushi', 'sashimi', 'nigiri', 'maki', 'omakase']
+  },
+  dumplings: {
+    emoji: '🥟',
+    keywords: ['dumpling', 'dim sum', 'bao', 'gyoza', 'momo', 'potsticker', 'pierogi']
+  },
+  chinese: {
+    emoji: '🥡',
+    keywords: ['chinese', 'cantonese', 'szechuan', 'takeout']
+  },
+  japanese: {
+    emoji: '🍱',
+    keywords: ['japanese', 'izakaya', 'teriyaki', 'tempura', 'bento']
+  },
+  thai_viet: {
+    emoji: '🥣',
+    keywords: ['thai', 'vietnamese', 'laotian', 'cambodian']
+  },
+  indian: {
+    emoji: '🍛',
+    keywords: ['indian', 'curry', 'masala', 'tandoori', 'paneer', 'naan', 'south indian', 'nepalese', 'balti']
+  },
+  middle_eastern: {
+    emoji: '🥙',
+    keywords: ['middle eastern', 'lebanese', 'falafel', 'hummus', 'kebab', 'gyro', 'shawarma', 'turkish', 'greek', 'mediterranean', 'pitta']
   },
   bakery: {
-    hex: '1F950', // Croissant
-    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'bagel', 'cake', 'sourdough', 'eclaire', 'empanadas', 'bakeology']
+    emoji: '🥐',
+    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'bagel', 'cake', 'sourdough', 'eclaire', 'bakeology', 'patisserie', 'boulangerie']
   },
   italian: {
-    hex: '1F35D', // Spaghetti
-    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'sicilian']
+    emoji: '🍝',
+    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'sicilian', 'lasagna', 'gnocchi', 'ravioli']
   },
   burgers: {
-    hex: '1F354', // Hamburger
-    keywords: ['burger', 'hamburger', 'smash', 'sando']
+    emoji: '🍔',
+    keywords: ['burger', 'hamburger', 'smash', 'sliders']
   },
   mexican: {
-    hex: '1F32E', // Taco
-    keywords: ['taco', 'burrito', 'mexican', 'nachos', 'guacamole', 'salsa', 'taqueria']
+    emoji: '🌮',
+    keywords: ['taco', 'burrito', 'mexican', 'nachos', 'guacamole', 'salsa', 'taqueria', 'quesadilla', 'enchilada']
   },
-  coffee: {
-    hex: '2615', // Hot Beverage
-    keywords: ['cafe', 'coffee', 'roastery', 'espresso', 'tea', 'matcha']
+  salad: {
+    emoji: '🥗',
+    keywords: ['salad', 'healthy', 'vegan', 'vegetarian', 'bowl', 'poke', 'greens']
   },
-  sweet: {
-    hex: '1F370', // Shortcake
-    keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'waffle', 'cookie']
-  },
-  pub: {
-    hex: '1F37A', // Beer Mug
-    keywords: ['pub', 'bar', 'beer', 'wine', 'cocktail', 'taproom', 'distillery', 'grub']
+  chicken: {
+    emoji: '🍗',
+    keywords: ['chicken', 'fried chicken', 'wings', 'nuggets', 'roast chicken', 'peri peri']
   },
   seafood: {
-    hex: '1F41F', // Fish
-    keywords: ['fish', 'seafood', 'lobster', 'oyster', 'crab', 'chowder']
+    emoji: '🐟',
+    keywords: ['fish', 'seafood', 'lobster', 'oyster', 'crab', 'chowder', 'chipper', 'fish and chips', 'prawn', 'shrimp']
   },
   sandwich: {
-    hex: '1F96A', // Sandwich
-    keywords: ['sandwich', 'deli', 'sub', 'baguette']
+    emoji: '🥪',
+    keywords: ['sandwich', 'deli', 'sub', 'baguette', 'toastie', 'panini', 'sando', 'banh mi']
   },
   breakfast: {
-    hex: '1F373', // Cooking (Frying Pan)
-    keywords: ['breakfast', 'brunch', 'eggs', 'pancake']
+    emoji: '🍳',
+    keywords: ['breakfast', 'brunch', 'eggs', 'pancake', 'waffle', 'fry up']
+  },
+  coffee: {
+    emoji: '☕',
+    keywords: ['cafe', 'coffee', 'roastery', 'espresso', 'tea', 'latte', 'cappuccino', 'flat white', 'americano']
+  },
+  matcha: {
+    emoji: '🍵',
+    keywords: ['matcha', 'green tea', 'sencha', 'oolong']
+  },
+  sweet: {
+    emoji: '🍰',
+    keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'cookie', 'doughnut', 'baklava', 'tiramisu', 'pudding']
+  },
+  beer: {
+    emoji: '🍺',
+    keywords: ['pub', 'bar', 'beer', 'taproom', 'brewery', 'stout', 'ale', 'guinness', 'pilsner', 'ipa']
+  },
+  wine: {
+    emoji: '🍷',
+    keywords: ['wine', 'wine bar', 'vineyard', 'enoteca', 'sommelier']
+  },
+  cocktail: {
+    emoji: '🍸',
+    keywords: ['cocktail', 'mixology', 'speakeasy', 'spirits', 'gin', 'vodka', 'whiskey', 'rum']
+  },
+  tapas: {
+    emoji: '🥘',
+    keywords: ['tapas', 'spanish', 'paella', 'pintxos', 'small plates']
   }
 };
 
-const DEFAULT_ICON = '1F374'; // Fork and Knife
+const DEFAULT_EMOJI = '🍴'; // Fork and Knife
 
 /**
- * Selects the best OpenMoji hex code based on name, description, and category.
+ * Selects the best emoji based on name, description, and category.
  */
-export function getRestaurantIconHex(name: string, description: string, category: string): string {
+export function getRestaurantEmoji(name: string, description: string, category: string): string {
   const combinedText = `${name} ${description} ${category}`.toLowerCase();
 
   // Score each icon based on keyword matches
-  let bestIcon = DEFAULT_ICON;
+  let bestEmoji = DEFAULT_EMOJI;
   let maxScore = 0;
 
   for (const mapping of Object.values(ICON_STRATEGY)) {
@@ -89,9 +145,9 @@ export function getRestaurantIconHex(name: string, description: string, category
 
     if (score > maxScore) {
       maxScore = score;
-      bestIcon = mapping.hex;
+      bestEmoji = mapping.emoji;
     }
   }
 
-  return bestIcon;
+  return bestEmoji;
 }

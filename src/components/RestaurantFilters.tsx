@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { getRestaurantEmoji } from '@/lib/icon-strategy';
 
 interface RestaurantFiltersProps {
   categories: string[];
@@ -119,7 +120,7 @@ export default function RestaurantFilters({ categories, onFilterChange }: Restau
           <option value="">All categories</option>
           {categories.map((category) => (
             <option key={category} value={category}>
-              {category}
+              {getRestaurantEmoji('', '', category)} {category}
             </option>
           ))}
         </select>
