@@ -139,5 +139,5 @@ export function getRestaurantEmoji(name: string, description: string, category: 
         return mapping.emoji;
       }
     }
-
+  }
 }
