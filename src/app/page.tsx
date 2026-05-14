@@ -146,30 +146,6 @@ export default function Home() {
           restaurants={filteredRestaurants}
           onRestaurantClick={handleRestaurantClick}
         />
-        
-        {/* Floating Search */}
-        <div className="absolute top-4 left-4 z-[1000] w-64">
-          <div className="bg-white p-2 rounded-lg shadow-lg border">
-            <input
-              type="text"
-              placeholder="Search restaurants..."
-              className="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onChange={(e) => handleFilterChange({ search: e.target.value })}
-            />
-          </div>
-        </div>
-
-        {/* Floating Stats Counter */}
-        {stats && (
-          <div className="absolute bottom-6 left-6 z-[1000] flex gap-2">
-            <div className="bg-white px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
-              <span className="text-blue-700">{stats.total}</span> spots
-            </div>
-            <div className="bg-white px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
-              <span className="text-green-700">{stats.completed}</span> visited
-            </div>
-          </div>
-        )}
       </div>
     </main>
   );

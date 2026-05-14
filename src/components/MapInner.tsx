@@ -13,6 +13,10 @@ if (typeof window !== 'undefined') {
     iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
     iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    iconSize: [12, 20],      // Standard is [25, 41]
+    iconAnchor: [6, 20],     // Standard is [12, 41]
+    popupAnchor: [1, -17],   // Standard is [1, -34]
+    shadowSize: [20, 20],    // Standard is [41, 41]
   });
 }
 
