@@ -13,7 +13,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [refreshMessage, setRefreshMessage] = useState<string | null>(null);
-  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   // Fetch data on mount
   useEffect(() => {
@@ -119,7 +118,8 @@ export default function Home() {
   };
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
-    setSelectedRestaurant(restaurant);
+    // We can still keep the handler if needed for other logic, 
+    // but for now it does nothing as we use Leaflet Popups
   };
 
   if (loading) {
@@ -250,81 +250,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Restaurant Detail Modal */}
-      {selectedRestaurant && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          onClick={() => setSelectedRestaurant(null)}
-        >
-          <div 
-            className="bg-white rounded-lg max-w-md w-full p-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-gray-900">
-                {selectedRestaurant.name}
-              </h3>
-              <button
-                onClick={() => setSelectedRestaurant(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-            
-            <div className="space-y-3">
-              {selectedRestaurant.category && (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">Category:</span>
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
-                    {selectedRestaurant.category}
-                  </span>
-                </div>
-              )}
-              
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Status:</span>
-                <span className={`px-2 py-1 text-sm rounded-full ${
-                  selectedRestaurant.isCompleted 
-                    ? 'bg-green-100 text-green-800' 
-                    : 'bg-orange-100 text-orange-800'
-                }`}>
-                  {selectedRestaurant.isCompleted ? '✅ Visited' : '📍 To Try'}
-                </span>
-              </div>
-              
-              {selectedRestaurant.description && (
-                <div>
-                  <span className="text-sm text-gray-600 block mb-1">Description:</span>
-                  <p className="text-gray-800">{selectedRestaurant.description}</p>
-                </div>
-              )}
-              
-              <div className="flex gap-3 pt-4">
-                <a
-                  href={selectedRestaurant.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center text-sm font-medium"
-                >
-                  📍 View on Maps
-                </a>
-                {selectedRestaurant.instagramUrl && (
-                  <a
-                    href={selectedRestaurant.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 text-center text-sm font-medium"
-                  >
-                    📷 Instagram
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
