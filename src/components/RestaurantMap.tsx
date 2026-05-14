@@ -60,29 +60,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
   }, [restaurants, processRestaurants]);
 
   // Calculate map center and bounds
-  const mapSettings = useMemo(() => {
-    if (restaurantsWithCoords.length === 0) {
-      return {
-        center: DUBLIN_CENTER,
-        zoom: 13
-      };
-    }
-
-    // Calculate center from bounds
-    const bounds = {
-      minLat: Math.min(...restaurantsWithCoords.map(r => r.coordinates.lat)),
-      maxLat: Math.max(...restaurantsWithCoords.map(r => r.coordinates.lat)),
-      minLng: Math.min(...restaurantsWithCoords.map(r => r.coordinates.lng)),
-      maxLng: Math.max(...restaurantsWithCoords.map(r => r.coordinates.lng)),
-    };
-
-    const center = {
-      lat: (bounds.minLat + bounds.maxLat) / 2,
-      lng: (bounds.minLng + bounds.maxLng) / 2,
-    };
-
-    return { center, zoom: 15 };
-  }, [restaurantsWithCoords]);
+  const mapSettings = { center:DUBLIN_CENTER, zoom: 15 };
 
   return (
     <div className="h-[calc(100vh-80px)] w-full overflow-hidden border">
