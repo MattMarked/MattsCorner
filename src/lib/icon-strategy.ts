@@ -12,10 +12,10 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🥘',
     keywords: ['tapas', 'spanish', 'paella', 'pintxos']
   },
-  bage: {
+  bagel: {
     emoji: '🥯',
     keywords: ['bagel', 'everything']
-  }
+  },
   italian: {
     emoji: '🍝',
     keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'italiano', 'lasagna', 'gnocchi', 'ravioli']
