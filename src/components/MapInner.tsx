@@ -168,7 +168,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                 rel="noopener noreferrer"
                 className="flex-1 bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
               >
-                📍 Adress
+                📍 Address
               </a>
               {restaurant.instagramUrl && (
                 <a

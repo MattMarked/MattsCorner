@@ -83,8 +83,7 @@
 	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
 	- [ ] steakhouse media - Bovinity | https://www.instagram.com/bovinitydublin/ (https://maps.app.goo.gl/f51Zxe7BPLTKd6M7A)
 	- [x] steakhouse cheap - Boeuf and Frites | https://maps.app.goo.gl/jyJqGRvEUeWshknKA
-
-- pizza al taglio:
+- pizza al taglio
 	- [ ] bambino |(https://www.instagram.com/bambino_dublin/)(https://maps.app.goo.gl/rZyaKVop5rm9vbB57)
 	- [ ] Vice | (https://www.instagram.com/vicedublin/)(https://maps.app.goo.gl/FnMnPYdt7dDEqbwD8)
 	- [x] Mani | (https://maps.app.goo.gl/A5Z9pqARoWpSBoKh8)
