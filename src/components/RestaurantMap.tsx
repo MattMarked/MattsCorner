@@ -60,7 +60,7 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
   }, [restaurants, processRestaurants]);
 
   // Calculate map center and bounds
-  const mapSettings = { center:DUBLIN_CENTER, zoom: 15 };
+  const mapSettings = { center:DUBLIN_CENTER, zoom: 18 };
 
   return (
     <div className="h-[calc(100vh-80px)] w-full overflow-hidden border">

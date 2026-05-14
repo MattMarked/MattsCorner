@@ -31,6 +31,35 @@ interface MapInnerProps {
   onRestaurantClick?: (restaurant: RestaurantWithCoords) => void;
 }
 
+// Mapping categories to OpenMoji hex codes
+// Library: https://openmoji.org/library/
+const CATEGORY_ICONS: Record<string, string> = {
+  'Asian': '1F35C',     // Steaming Bowl
+  'Pizza': '1F355',     // Slice of Pizza
+  'Bakery': '1F950',    // Croissant
+  'Italian': '1F35D',   // Spaghetti
+  'Burgers': '1F354',   // Hamburger
+  'Mexican': '1F32E',   // Taco
+  'Coffee': '2615',     // Hot Beverage
+  'Sweet': '1F370',     // Shortcake
+  'Pub': '1F37A',       // Beer Mug
+  'default': '1F374',   // Fork and Knife
+};
+
+function getCategoryIcon(category: string): string {
+  if (!category) return CATEGORY_ICONS['default'];
+  
+  const normalizedCategory = category.trim();
+  // Try exact match or partial match
+  for (const [key, value] of Object.entries(CATEGORY_ICONS)) {
+    if (normalizedCategory.toLowerCase().includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+  
+  return CATEGORY_ICONS['default'];
+}
+
 export default function MapInner({ restaurants, center, zoom, onRestaurantClick }: MapInnerProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -85,7 +114,30 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
         const position: L.LatLngExpression = [restaurant.coordinates.lat, restaurant.coordinates.lng];
         latLngs.push(position);
 
-        const marker = L.marker(position);
+        const hex = getCategoryIcon(restaurant.category);
+        const iconUrl = `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${hex}.svg`;
+
+        const customIcon = L.divIcon({
+          html: `<div style="
+            width: 30px; 
+            height: 30px; 
+            background: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border: 2px solid white;
+          ">
+            <img src="${iconUrl}" style="width: 20px; height: 20px;" alt="${restaurant.category}" />
+          </div>`,
+          className: 'custom-emoji-marker',
+          iconSize: [30, 30],
+          iconAnchor: [15, 15],
+          popupAnchor: [0, -15],
+        });
+
+        const marker = L.marker(position, { icon: customIcon });
         
         // Popup Content using React Static Markup
         const popupContent = renderToStaticMarkup(
@@ -120,7 +172,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                 rel="noopener noreferrer"
                 className="flex-1 bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
               >
-                📍 Adress
+                📍 Address
               </a>
               {restaurant.instagramUrl && (
                 <a
