@@ -134,121 +134,75 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <main className="min-h-screen flex flex-col bg-white">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-10">
-        <div className="w-full px-4 py-4">
+      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-50">
+        <div className="w-full px-6 py-3">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">🍽️ Matt&apos;s Corner</h1>
-              <p className="text-sm text-gray-600">Dublin Food Discovery Map</p>
+              <h1 className="text-xl font-bold text-gray-900">🍽️ Matt&apos;s Corner</h1>
+              <p className="text-xs text-gray-600">Dublin Food Discovery Map</p>
             </div>
-            {stats && (
-              <div className="hidden sm:flex items-center gap-4 text-sm">
-                <div className="bg-blue-100 px-3 py-1 rounded-full">
-                  <span className="font-semibold text-blue-800">{stats.total}</span> restaurants
-                </div>
-                <div className="bg-green-100 px-3 py-1 rounded-full">
-                  <span className="font-semibold text-green-800">{stats.completed}</span> visited
-                </div>
-                <div className="bg-orange-100 px-3 py-1 rounded-full">
-                  <span className="font-semibold text-orange-800">{stats.pending}</span> to try
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <div className="w-full px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
-            <RestaurantFilters
-              categories={categories}
-              onFilterChange={handleFilterChange}
-            />
             
-            {/* Stats */}
-            {stats && (
-              <div className="bg-white rounded-lg shadow-sm border p-4 mt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Statistics</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>Total restaurants:</span>
-                    <span className="font-semibold">{stats.total}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Visited:</span>
-                    <span className="font-semibold text-green-600">{stats.completed}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>To try:</span>
-                    <span className="font-semibold text-orange-600">{stats.pending}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Completion:</span>
-                    <span className="font-semibold">{stats.completionRate}%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Categories:</span>
-                    <span className="font-semibold">{stats.categories}</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Refresh Database Button */}
-            <div className="bg-white rounded-lg shadow-sm border p-4 mt-6">
+            <div className="flex items-center gap-4">
+              {refreshMessage && (
+                <span className="text-sm font-medium animate-fade-in">
+                  {refreshMessage}
+                </span>
+              )}
               <button
                 onClick={handleRefresh}
                 disabled={refreshing}
-                className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
+                className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                   refreshing
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
                 }`}
               >
                 {refreshing ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-400"></div>
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-400"></div>
                     Refreshing...
                   </>
                 ) : (
-                  <>
-                    🔄 Refresh Database
-                  </>
+                  <>🔄 Refresh</>
                 )}
               </button>
-              
-              {refreshMessage && (
-                <div className="mt-3 text-sm text-center">
-                  {refreshMessage}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Map Area */}
-          <div className="lg:col-span-3">
-            <div className="bg-white rounded-lg shadow-sm border p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">
-                  Restaurant Map
-                </h2>
-                <div className="text-sm text-gray-600">
-                  Showing {filteredRestaurants.length} of {restaurants.length} restaurants
-                </div>
-              </div>
-              
-              <RestaurantMap
-                restaurants={filteredRestaurants}
-                onRestaurantClick={handleRestaurantClick}
-              />
             </div>
           </div>
         </div>
+      </header>
+
+      {/* Main Content - Full Width Map */}
+      <div className="flex-1 relative">
+        <RestaurantMap
+          restaurants={filteredRestaurants}
+          onRestaurantClick={handleRestaurantClick}
+        />
+        
+        {/* Floating Search (Optional, since filters were removed) */}
+        <div className="absolute top-4 left-4 z-[1000] w-64">
+          <div className="bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg border">
+            <input
+              type="text"
+              placeholder="Search restaurants..."
+              className="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => handleFilterChange({ search: e.target.value })}
+            />
+          </div>
+        </div>
+
+        {/* Floating Stats Counter */}
+        {stats && (
+          <div className="absolute bottom-6 left-6 z-[1000] flex gap-2">
+            <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
+              <span className="text-blue-700">{stats.total}</span> spots
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border text-xs font-semibold">
+              <span className="text-green-700">{stats.completed}</span> visited
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );

@@ -73,26 +73,26 @@ export default function RestaurantMap({ restaurants, onRestaurantClick }: Restau
   };
 
   return (
-    <div className="h-96 w-full rounded-lg overflow-hidden border">
+    <div className="h-full w-full overflow-hidden">
       {isLoadingCoords && (
-        <div className="absolute top-0 left-0 right-0 z-[1000] bg-blue-50 border-b border-blue-200 p-2 text-center">
+        <div className="absolute top-0 left-0 right-0 z-[2000] bg-blue-50/80 backdrop-blur-sm p-1 text-center">
           <div className="flex items-center justify-center gap-2">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-            <span className="text-blue-700">Loading locations...</span>
+            <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-600"></div>
+            <span className="text-[10px] text-blue-700 font-medium">Loading locations...</span>
           </div>
         </div>
       )}
       
       {error && (
-        <div className="absolute top-0 left-0 right-0 z-[1000] bg-red-50 border-b border-red-200 p-2 text-center">
-          <span className="text-red-700">{error}</span>
+        <div className="absolute top-0 left-0 right-0 z-[2000] bg-red-50/80 backdrop-blur-sm p-1 text-center">
+          <span className="text-[10px] text-red-700 font-medium">{error}</span>
         </div>
       )}
 
       <MapInner 
         restaurants={restaurantsWithCoords} 
         center={mapSettings.center} 
-        zoom={mapSettings.zoom}
+        zoom={18}
         onRestaurantClick={onRestaurantClick}
       />
     </div>
