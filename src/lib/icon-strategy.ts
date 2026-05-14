@@ -50,11 +50,11 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   chinese: {
     emoji: '🥡',
-    keywords: ['chinese', 'cantonese', 'szechuan', 'takeout']
+    keywords: ['chinese', 'cinese', 'cantonese', 'szechuan', 'takeout']
   },
   japanese: {
     emoji: '🍱',
-    keywords: ['japanese', 'izakaya', 'teriyaki', 'tempura', 'bento', 'japan']
+    keywords: ['japanese', 'giappo', 'giapponese', 'izakaya', 'teriyaki', 'tempura', 'bento', 'japan']
   },
   thai_viet: {
     emoji: '🍲',

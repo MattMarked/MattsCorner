@@ -6,14 +6,17 @@ let client: Client | null = null;
 
 export function getDatabase(): Client {
   if (!client) {
+    console.log('[DB] Initializing database client...');
     // For local development, use local SQLite file
     // For production (Vercel), use Turso cloud database
     if (process.env.TURSO_DATABASE_URL) {
+      console.log('[DB] Using Turso cloud database');
       client = createClient({
         url: process.env.TURSO_DATABASE_URL,
         authToken: process.env.TURSO_AUTH_TOKEN,
       });
     } else {
+      console.log('[DB] Using local SQLite database');
       // Local development fallback
       client = createClient({
         url: 'file:database/restaurants.db'
@@ -21,7 +24,12 @@ export function getDatabase(): Client {
     }
     
     // Initialize tables on startup
-    initializeTables();
+    console.log('[DB] Triggering table initialization...');
+    initializeTables().then(() => {
+      console.log('[DB] Table initialization finished');
+    }).catch(err => {
+      console.error('[DB] Table initialization failed:', err);
+    });
   }
   
   return client;

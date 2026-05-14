@@ -4,8 +4,11 @@ import { parseMarkdownToRestaurants } from '@/lib/parser';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/restaurants - Get all restaurants with optional filtering
 export async function GET(request: NextRequest) {
+  console.log(`[API] GET /api/restaurants triggered`);
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
@@ -14,9 +17,11 @@ export async function GET(request: NextRequest) {
     
     const repository = new RestaurantRepository();
 
-    // Auto-initialize database if empty (only for local development)
+    // Auto-initialize database if empty (only for local development and NOT during build)
+    const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
     const existingRestaurants = await repository.getAllRestaurants();
-    if (existingRestaurants.length === 0 && process.env.NODE_ENV === 'development') {
+    
+    if (existingRestaurants.length === 0 && process.env.NODE_ENV === 'development' && !isBuildPhase) {
       console.log('Database is empty in development, auto-initializing from markdown...');
       
       // Use repository path by default, allowing override via env

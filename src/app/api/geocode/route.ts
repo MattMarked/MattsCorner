@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { applyConfiguredShift } from '@/lib/coordinates';
 import { resolveGoogleMapsUrl } from '@/lib/url-resolver';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
+  console.log(`[API] GET /api/geocode triggered`);
   const { searchParams } = new URL(request.url);
   const mapsUrl = searchParams.get('url');
 

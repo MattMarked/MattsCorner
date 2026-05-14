@@ -34,21 +34,30 @@ export async function resolveGoogleMapsUrl(shortenedUrl: string): Promise<Coordi
 }
 
 /**
- * Follows HTTP redirects to get the final URL
+ * Follows HTTP redirects to get the final URL with a timeout
  */
 async function followRedirects(url: string): Promise<string | null> {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(url, {
-      method: 'GET', // GET is more reliable for some redirects than HEAD
+      method: 'GET',
       redirect: 'follow',
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      }
+      },
+      signal: controller.signal
     });
     
+    clearTimeout(timeoutId);
     return response.url || null;
   } catch (error) {
-    console.error(`Error following redirects for ${url}:`, error);
+    if (error instanceof Error && error.name === 'AbortError') {
+      console.error(`Timeout following redirects for ${url}`);
+    } else {
+      console.error(`Error following redirects for ${url}:`, error);
+    }
     return null;
   }
 }
@@ -78,6 +87,7 @@ export function extractCoordinatesFromUrl(url: string): Coordinates | null {
         lng: parseFloat(lngMatch[1])
       };
     }
+
     
     // Pattern 3: ll=lat,lng
     match = url.match(/ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/);

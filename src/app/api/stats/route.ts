@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { RestaurantRepository } from '@/lib/database-turso';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/stats - Get restaurant statistics
 export async function GET() {
   try {
