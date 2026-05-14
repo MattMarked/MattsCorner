@@ -31,7 +31,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   korea: {
     emoji: '🇰🇷',
     keywords: ['korea', 'korean', 'corndog', 'tteokbokki']
-  }
+  },
   bbq: {
     emoji: '🍖',
     keywords: ['bbq', 'barbecue', 'grill', 'ribs', 'smoked', 'brisket']
