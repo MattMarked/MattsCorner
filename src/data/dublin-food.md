@@ -61,13 +61,12 @@
 	- [x] french bistro - chez max (near dublin castle)(https://maps.app.goo.gl/vituChWy9ubtyp8b8)
 	- [ ] modern european / spanish inspired - Uno Mas | (https://maps.app.goo.gl/5z5kFxB646PN6rGQ8)
 	- [ ] french style - Pichet (dame street)
-- Sandwiches / Burgers
+- Sandwiches
 	- [x] fried chicken sandwich - Cluck chicken | (https://maps.app.goo.gl/sdnvLsPYrxMphXux7)
 	- [x] pastrami - pig and the heifer | (https://maps.app.goo.gl/JfNEXvwEQNXbATmz5)
 	- [ ] fried chicken sandwich - Mad Egg | (https://maps.app.goo.gl/kYeCtrMKKsHdbbf47)
 	- [ ] korean fried chicken - chimac | (https://maps.app.goo.gl/4QXfLRhLo5W8GnEW6)
-	- [x] smash burger (dash burger) | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
-	- [x] smash burger (Rolling stoves) [[ristoranti vicini a casa]]
+
 	- [ ] chicago beef sandwich come in the bear |([hawksmoor](https://www.instagram.com/p/C86x3iUCHRp/))(https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
 	- [ ] Roast in a Roll  FX buckley victualler | (https://www.instagram.com/fxbuckleyvictuallerandgrocer/) )(https://maps.app.goo.gl/wndKed8Rx8B4PWTbA)
 	- [ ] Fermented veggie / pickels - Fairmental | (https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
@@ -75,6 +74,10 @@
 	- [ ] Mambo Sambo| https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
 	- [x] breakfast roll - Declan and Dolan
 	- [ ] breakfast roll - Woodmill, Artane
+- burgers
+	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
+	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
+	- [ ] thick burger - Bujo
 - Seasonal
 	- [x] Xmas Sando - Yellowdoor
 	- [ ] Xmas Sando - The Storyteller | (https://maps.app.goo.gl/sUk5rQJRryzTNusKA)

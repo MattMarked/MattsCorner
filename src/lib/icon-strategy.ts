@@ -8,21 +8,37 @@ interface IconMapping {
 }
 
 const ICON_STRATEGY: Record<string, IconMapping> = {
+  spanish: {
+    emoji: '🥘',
+    keywords: ['tapas', 'spanish', 'paella', 'pintxos']
+  },
+  bage: {
+    emoji: '🥯',
+    keywords: ['bagel', 'everything']
+  }
+  italian: {
+    emoji: '🍝',
+    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'italiano', 'lasagna', 'gnocchi', 'ravioli']
+  },
   pizza: {
     emoji: '🍕',
-    keywords: ['pizza', 'pizzeria', 'taglio', 'dough']
+    keywords: ['pizza', 'pizzeria', 'taglio']
   },
   steak: {
     emoji: '🥩',
     keywords: ['steak', 'steakhouse', 'sirloin', 'ribeye', 'fillet']
   },
+  korea: {
+    emoji: '🇰🇷',
+    keywords: ['korea', 'korean', 'corndog', 'tteokbokki']
+  }
   bbq: {
     emoji: '🍖',
-    keywords: ['bbq', 'barbecue', 'grill', 'ribs', 'korean bbq', 'smoked', 'brisket']
+    keywords: ['bbq', 'barbecue', 'grill', 'ribs', 'smoked', 'brisket']
   },
   ramen: {
     emoji: '🍜',
-    keywords: ['ramen', 'noodle', 'pho', 'udon', 'soba', 'thukpa']
+    keywords: ['ramen', 'noodle', 'pho', 'udon', 'soba']
   },
   sushi: {
     emoji: '🍣',
@@ -30,7 +46,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   dumplings: {
     emoji: '🥟',
-    keywords: ['dumpling', 'dim sum', 'bao', 'gyoza', 'momo', 'potsticker', 'pierogi']
+    keywords: ['dumpling', 'dim sum', 'bao', 'gyoza', 'pierogi']
   },
   chinese: {
     emoji: '🥡',
@@ -38,27 +54,23 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   japanese: {
     emoji: '🍱',
-    keywords: ['japanese', 'izakaya', 'teriyaki', 'tempura', 'bento']
+    keywords: ['japanese', 'izakaya', 'teriyaki', 'tempura', 'bento', 'japan']
   },
   thai_viet: {
-    emoji: '🥣',
+    emoji: '🍲',
     keywords: ['thai', 'vietnamese', 'laotian', 'cambodian']
   },
   indian: {
     emoji: '🍛',
-    keywords: ['indian', 'curry', 'masala', 'tandoori', 'paneer', 'naan', 'south indian', 'nepalese', 'balti']
+    keywords: ['indian', 'curry', 'masala', 'tandoori', 'paneer', 'naan', 'nepalese', 'balti']
   },
   middle_eastern: {
     emoji: '🥙',
-    keywords: ['middle eastern', 'lebanese', 'falafel', 'hummus', 'kebab', 'gyro', 'shawarma', 'turkish', 'greek', 'mediterranean', 'pitta']
+    keywords: ['middle eastern', 'lebanese', 'falafel', 'hummus', 'kebab', 'gyro', 'shawarma', 'turkish', 'greek', 'mediterranean', 'pitta', 'pita']
   },
   bakery: {
     emoji: '🥐',
-    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'bagel', 'cake', 'sourdough', 'eclaire', 'bakeology', 'patisserie', 'boulangerie']
-  },
-  italian: {
-    emoji: '🍝',
-    keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'sicilian', 'lasagna', 'gnocchi', 'ravioli']
+    keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'cake', 'sourdough', 'eclaire', 'patisserie', 'boulangerie']
   },
   burgers: {
     emoji: '🍔',
@@ -97,7 +109,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     keywords: ['matcha', 'green tea', 'sencha', 'oolong']
   },
   sweet: {
-    emoji: '🍰',
+    emoji: '🍩',
     keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'cookie', 'doughnut', 'baklava', 'tiramisu', 'pudding']
   },
   beer: {
@@ -111,10 +123,6 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   cocktail: {
     emoji: '🍸',
     keywords: ['cocktail', 'mixology', 'speakeasy', 'spirits', 'gin', 'vodka', 'whiskey', 'rum']
-  },
-  tapas: {
-    emoji: '🥘',
-    keywords: ['tapas', 'spanish', 'paella', 'pintxos', 'small plates']
   }
 };
 
@@ -125,29 +133,11 @@ const DEFAULT_EMOJI = '🍴'; // Fork and Knife
  */
 export function getRestaurantEmoji(name: string, description: string, category: string): string {
   const combinedText = `${name} ${description} ${category}`.toLowerCase();
-
-  // Score each icon based on keyword matches
-  let bestEmoji = DEFAULT_EMOJI;
-  let maxScore = 0;
-
   for (const mapping of Object.values(ICON_STRATEGY)) {
-    let score = 0;
     for (const keyword of mapping.keywords) {
       if (combinedText.includes(keyword.toLowerCase())) {
-        // Direct category matches get higher priority
-        if (category.toLowerCase().includes(keyword.toLowerCase())) {
-          score += 5;
-        } else {
-          score += 1;
-        }
+        return mapping.emoji;
       }
     }
 
-    if (score > maxScore) {
-      maxScore = score;
-      bestEmoji = mapping.emoji;
-    }
-  }
-
-  return bestEmoji;
 }
