@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Restaurant } from '@/lib/parser';
+import { getRestaurantIconHex } from '@/lib/icon-strategy';
 
 // Fix for default icon issues with Leaflet in Next.js
 if (typeof window !== 'undefined') {
@@ -29,35 +30,6 @@ interface MapInnerProps {
   center: { lat: number; lng: number };
   zoom: number;
   onRestaurantClick?: (restaurant: RestaurantWithCoords) => void;
-}
-
-// Mapping categories to OpenMoji hex codes
-// Library: https://openmoji.org/library/
-const CATEGORY_ICONS: Record<string, string> = {
-  'Asian': '1F35C',     // Steaming Bowl
-  'Pizza': '1F355',     // Slice of Pizza
-  'Bakery': '1F950',    // Croissant
-  'Italian': '1F35D',   // Spaghetti
-  'Burgers': '1F354',   // Hamburger
-  'Mexican': '1F32E',   // Taco
-  'Coffee': '2615',     // Hot Beverage
-  'Sweet': '1F370',     // Shortcake
-  'Pub': '1F37A',       // Beer Mug
-  'default': '1F374',   // Fork and Knife
-};
-
-function getCategoryIcon(category: string): string {
-  if (!category) return CATEGORY_ICONS['default'];
-  
-  const normalizedCategory = category.trim();
-  // Try exact match or partial match
-  for (const [key, value] of Object.entries(CATEGORY_ICONS)) {
-    if (normalizedCategory.toLowerCase().includes(key.toLowerCase())) {
-      return value;
-    }
-  }
-  
-  return CATEGORY_ICONS['default'];
 }
 
 export default function MapInner({ restaurants, center, zoom, onRestaurantClick }: MapInnerProps) {
@@ -114,7 +86,8 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
         const position: L.LatLngExpression = [restaurant.coordinates.lat, restaurant.coordinates.lng];
         latLngs.push(position);
 
-        const hex = getCategoryIcon(restaurant.category);
+        // Use the new icon selection strategy
+        const hex = getRestaurantIconHex(restaurant.name, restaurant.description, restaurant.category);
         const iconUrl = `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${hex}.svg`;
 
         const customIcon = L.divIcon({
@@ -168,7 +141,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                 rel="noopener noreferrer"
                 className="flex-1 bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
               >
-                📍 Address
+                📍 Adress
               </a>
               {restaurant.instagramUrl && (
                 <a
