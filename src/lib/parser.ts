@@ -1,10 +1,10 @@
 import crypto from 'crypto';
 import { resolveGoogleMapsUrl, batchResolveUrls, type Coordinates, extractCoordinatesFromUrl as extractCoordinatesFromMapsUrl } from './url-resolver';
 
-// Dublin city center coordinates
+// O'Connell Bridge coordinates
 export const DUBLIN_CENTER = {
-  lat: 53.3498,
-  lng: -6.2603
+  lat: 53.3473,
+  lng: -6.2591
 };
 
 export interface Restaurant {

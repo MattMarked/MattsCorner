@@ -98,7 +98,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
     };
   }, []); // Only once on mount
 
-  // Update Markers and Bounds
+  // Update Markers and Center
   useEffect(() => {
     const map = mapInstanceRef.current;
     const markersLayer = markersLayerRef.current;
@@ -119,27 +119,23 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
 
         const customIcon = L.divIcon({
           html: `<div style="
-            width: 30px; 
-            height: 30px; 
-            background: white; 
-            border-radius: 50%; 
+            width: 60px; 
+            height: 60px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            border: 2px solid white;
+            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5));
           ">
-            <img src="${iconUrl}" style="width: 20px; height: 20px;" alt="${restaurant.category}" />
+            <img src="${iconUrl}" style="width: 50px; height: 50px;" alt="${restaurant.category}" />
           </div>`,
           className: 'custom-emoji-marker',
-          iconSize: [30, 30],
-          iconAnchor: [15, 15],
-          popupAnchor: [0, -15],
+          iconSize: [60, 60],
+          iconAnchor: [30, 30],
+          popupAnchor: [0, -25],
         });
 
         const marker = L.marker(position, { icon: customIcon });
         
-        // Popup Content using React Static Markup
         const popupContent = renderToStaticMarkup(
           <div className="min-w-[200px] py-1">
             <h3 className="font-bold text-lg mb-1">{restaurant.name}</h3>
@@ -172,7 +168,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                 rel="noopener noreferrer"
                 className="flex-1 bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
               >
-                📍 Address
+                📍 Adress
               </a>
               {restaurant.instagramUrl && (
                 <a
@@ -197,9 +193,7 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
         markersLayer.addLayer(marker);
       });
 
-      // Fit bounds
-      const bounds = L.latLngBounds(latLngs);
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 10 });
+      map.setView([center.lat, center.lng], zoom, { animate: true });
     } else {
       map.setView([center.lat, center.lng], zoom);
     }
