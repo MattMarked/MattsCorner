@@ -39,7 +39,7 @@
 - Bagels
 	- [ ] Ada coffee and bagels , Thomas St | (https://maps.app.goo.gl/Sx9jCtZW4dhCV6Jo8)
 	- [ ] FatBabyBakes, NY style, only order in advance |(https://www.instagram.com/fatbabybakes/)
-	- [ ] itsa Bagels, Middle Abbey Street (ingresso di Arnotts) | (https://www.instagram.com/itsadublin/)
+	- [ ] itsa Bagels, Middle Abbey Street (ingresso di Arnotts) | (https://www.instagram.com/itsadublin/)(https://maps.app.goo.gl/35MUZHbCFyd4tRr4A)
 	- [ ] volumes bagels | (https://www.instagram.com/volumesdublin/)(https://maps.app.goo.gl/T41wW6m7S6fsPXy86)
 - Pizza
 	- [x] La Papessa [[ristoranti vicini a casa]]
