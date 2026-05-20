@@ -13,7 +13,7 @@
 	- [ ] Cinese high quality - Big fan | (https://www.instagram.com/bigfanbao/) (https://maps.app.goo.gl/DXkA8jUYrRgxYXnK7)
 	- [x] Cinese hot pot - cheng du hotpot | (https://maps.app.goo.gl/bB8ZmCJny8W5YsMp7)
 - Italiano (not pizza)
-	- [ ] sicilian food - Amuri | (https://maps.app.goo.gl/29HJhuF9QZWToFU66)
+	- [ ] sicilian food - Amuri | (https://maps.app.goo.gl/wDUUpKcJ8trGKzMX7)
 	- [x] pasta e pesce - Osteria Lucio | (https://maps.app.goo.gl/4mPFuJZQTAuyfWt16)
 	- [ ] pasta al pesce - Il Vicoletto | (https://maps.app.goo.gl/mxoAKaUFLwnNBjfGA)
 	- [ ] pasta, contorni e carne - I Monelli, Portobello | (https://maps.app.goo.gl/1NmPQ9nkXwERw7CaA?g_st=ic)

@@ -139,18 +139,18 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                 href={restaurant.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
+                className="flex-1 bg-blue-600 !text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-blue-700 transition-colors"
               >
-                📍 Adress
+                📍 Address
               </a>
               {restaurant.instagramUrl && (
                 <a
                   href={restaurant.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-purple-600 text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-purple-700 transition-colors"
+                  className="flex-1 bg-purple-600 !text-white px-3 py-1.5 rounded text-xs font-medium text-center no-underline hover:bg-purple-700 transition-colors"
                 >
-                  🔗 Insta
+                  📸 Instagram
                 </a>
               )}
             </div>
