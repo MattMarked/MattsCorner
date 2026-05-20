@@ -24,7 +24,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🍪',
     keywords: ['cookie', 'cookies', 'crookie', 'crookies']
   },
-  french; {
+  french: {
     emoji: '🇫🇷',
     keywords: ['french', 'france', 'bistrot', 'bistro']
   },
@@ -92,8 +92,8 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🥐',
     keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'cake', 'sourdough', 'eclaire', 'patisserie', 'boulangerie']
   },
-  chips; {
-    emoji; '🍟',
+  chips: {
+    emoji: '🍟',
     keywords: ['chips','chip','fries','crisps']
   },
   hotdog: {
@@ -104,8 +104,8 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🍔',
     keywords: ['burger', 'hamburger', 'smash', 'sliders', 'cheeseburger']
   },
-  pancakes; {
-    emoji;'🥞',
+  pancakes: {
+    emoji:'🥞',
     keywords: ['pancake', 'pancakes', 'crepe', 'crepes']
   },
   mexican: {
