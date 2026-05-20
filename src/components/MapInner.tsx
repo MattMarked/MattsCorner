@@ -119,13 +119,6 @@ export default function MapInner({ restaurants, center, zoom, onRestaurantClick 
                   {restaurant.category}
                 </span>
               )}
-              <span className={`px-2 py-0.5 text-[10px] font-semibold rounded-full ${
-                restaurant.isCompleted 
-                  ? 'bg-green-100 text-green-800' 
-                  : 'bg-orange-100 text-orange-800'
-              }`}>
-                {restaurant.isCompleted ? '✅ Visited' : '📍 To Try'}
-              </span>
             </div>
             
             {restaurant.description && (

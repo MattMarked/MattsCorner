@@ -80,32 +80,6 @@ export default function RestaurantFilters({ categories, onFilterChange }: Restau
         />
       </div>
 
-      {/* Status Filter */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Status
-        </label>
-        <div className="flex gap-2 flex-wrap">
-          {[
-            { value: 'all', label: 'All', count: null },
-            { value: 'completed', label: 'Visited', count: null },
-            { value: 'pending', label: 'To Try', count: null }
-          ].map((status) => (
-            <button
-              key={status.value}
-              onClick={() => handleStatusChange(status.value as any)}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                selectedStatus === status.value
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {status.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Category Filter */}
       <div>
         <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
