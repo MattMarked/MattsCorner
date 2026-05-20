@@ -18,11 +18,11 @@
 	- [ ] pasta al pesce - Il Vicoletto | (https://maps.app.goo.gl/mxoAKaUFLwnNBjfGA)
 	- [ ] pasta, contorni e carne - I Monelli, Portobello | (https://maps.app.goo.gl/1NmPQ9nkXwERw7CaA?g_st=ic)
 	- [ ] pasta - Sprezzatura | (https://maps.app.goo.gl/HucbWcNcyHLSo5bh7)
-	- [ ] pasta e secondi - Crudo
-	- [ ] pasta - Grano
+	- [ ] pasta e secondi -  (https://maps.app.goo.gl/2qrF2cPGjx2Mw5fy5)
+	- [ ] pasta - Grano (https://maps.app.goo.gl/nJVmSFfrjeNMt317A)
 	- [x] siciliano - Dolce sicily | (https://maps.app.goo.gl/hPeaH6a8CqLCjEFR6)
 	- [x] that's amore [[ristoranti vicini a casa]] | (https://maps.app.goo.gl/73MvVy9VshmEnYPu5)
-	- [ ] dolci e piatti milanesi - gloria osteria
+	- [ ] dolci e piatti milanesi - gloria osteria (https://maps.app.goo.gl/tAeypJs1qEkBAHy77)
 - Bakery
 	- [x] Crookies - Perky's a Raheny | (https://maps.app.goo.gl/AXMnddqTV9i1V9GVA)
 	- [ ] Bloom's cafe | (https://maps.app.goo.gl/SNAmrw63NncfZHf78)
@@ -32,10 +32,10 @@
 	- [ ] Russel street bakery, dietro croke park | (https://maps.app.goo.gl/zELMs6hf7SpVSUcg8)
 	- [ ] Elliot's, smithfield oppure phibsborough | (https://maps.app.goo.gl/eZnBdkcgZQ8ZDXaY9)
 	- [ ] Bang Bang, smithfield | (https://maps.app.goo.gl/L4b7oyCfBfYJ6b1NA)
-	- [x] piccolo spot per asporto - The middle child, santry
+	- [x] piccolo spot per asporto - The middle child, santry (https://maps.app.goo.gl/ozLHhhAZ6XJETdieA)
 - Middle eastern
-	- [x] lebanese - Shouk, drumcondra
-	- [ ] lebanese - shaku maku
+	- [x] lebanese - Shouk, drumcondra (https://maps.app.goo.gl/4UNKciEeeNguLQLY8)
+	- [ ] lebanese - shaku maku (https://maps.app.goo.gl/HYvynUAMQsekNEhp6)
 - Bagels
 	- [ ] Ada coffee and bagels , Thomas St | (https://maps.app.goo.gl/Sx9jCtZW4dhCV6Jo8)
 	- [ ] FatBabyBakes, NY style, only order in advance |(https://www.instagram.com/fatbabybakes/)
@@ -61,11 +61,11 @@
 	- [ ] michelin starred - Mr Fox | (https://maps.app.goo.gl/H8NHi5YZSWJBBJrX6)
 	- [x] french bistro - chez max (near dublin castle)(https://maps.app.goo.gl/vituChWy9ubtyp8b8)
 	- [ ] modern european / spanish inspired - Uno Mas | (https://maps.app.goo.gl/5z5kFxB646PN6rGQ8)
-	- [ ] french style - Pichet (dame street)
+	- [ ] french style - Pichet (dame street) (https://maps.app.goo.gl/YESyKewrprGfoTcT9)
 - Sandwiches
 	- [x] fried chicken sandwich - Cluck chicken | (https://maps.app.goo.gl/sdnvLsPYrxMphXux7)
 	- [x] pastrami - pig and the heifer | (https://maps.app.goo.gl/JfNEXvwEQNXbATmz5)
-	- [ ] cubano e birria e ban mhi - Little Geno's ()
+	- [ ] cubano, birria e ban mhi - Little Geno's (https://maps.app.goo.gl/AimBjKBciQuU4LLt7)
 	- [ ] fried chicken sandwich - Mad Egg | (https://maps.app.goo.gl/kYeCtrMKKsHdbbf47)
 	- [ ] korean fried chicken - chimac | (https://maps.app.goo.gl/4QXfLRhLo5W8GnEW6)
 
@@ -74,20 +74,21 @@
 	- [ ] Fermented veggie / pickels - Fairmental | (https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
 	- [ ] berlin style kebab - Chiya | https://www.instagram.com/chiyadublin/)(https://maps.app.goo.gl/V1NUzSBjGnq4SKxx8)
 	- [ ] Mambo Sambo| https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
-	- [x] breakfast roll - Declan and Dolan
-	- [ ] breakfast roll - Woodmill, Artane
+	- [x] breakfast roll - Declan and Dolan (https://maps.app.goo.gl/Mm7GkDoDXJHxs3d67)
+	- [ ] breakfast roll - Woodmill, Artane (https://maps.app.goo.gl/wvk1qrMzbEHWbZoH8)
 	- [ ] doughboys, charlotte way
-	- [ ] minetta deli, sutton ([[ristoranti vicini a casa]])
-	- [ ] loverboy, clontarf
+	- [ ] sandwich focaccia - minetta deli, sutton ([[ristoranti vicini a casa]])(https://maps.app.goo.gl/qQbfwFHD2M8tcAri6)
+	- [ ] focacce - loverboy, clontarf (https://maps.app.goo.gl/2PiWEWvyxcFux7fVA)
 - burgers
 	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
 	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
-	- [ ] thick burger - Bujo
-- Seasonal
-	- [x] Xmas Sando - Yellowdoor
+	- [ ] smash - bunsen, varie location (una anche a blanchard) (https://maps.app.goo.gl/GfSoPFxvWJpCT5t38)
+	- [ ] thick burger - Bujo (https://maps.app.goo.gl/po3kFyKNykJf6BnV9)
+- Christmas
+	- [x] Xmas Sando - Yellowdoor (https://maps.app.goo.gl/m9VB2jm3JRfrVTVU7)
 	- [ ] Xmas Sando - The Storyteller | (https://maps.app.goo.gl/sUk5rQJRryzTNusKA)
 	- [ ] Xmas Sando - Carved | (https://maps.app.goo.gl/iAMVVryQCv2pbE3W6)
-	- [ ] Xmas Sando - Balgriffin Inn [[ristoranti vicini a casa]]
+	- [ ] Xmas Sando - Balgriffin Inn [[ristoranti vicini a casa]] (https://maps.app.goo.gl/Pb3ya7EvH3oH6coDA)
 - Steakhouses
 	- [ ] steakhouse pettinata - FX buckley |(https://www.thebuckleycollection.ie/crow-street) (https://maps.app.goo.gl/hA38V7nzZfPzibQg9)
 	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
@@ -101,22 +102,22 @@
 	- [x] Squaredish | (https://maps.app.goo.gl/xSXaLjVfDKRtSWQaA)
 	- [ ] DiFontaines |(https://maps.app.goo.gl/q1gkSFoYXyJ9WGBq6)
 - Pub Grub
-	- [x] o'connells |(https://www.oconnellshowth.ie/)https://maps.app.goo.gl/VHBzCKd2R2pbxMMt5)
+	- [x] o'connells |(https://www.oconnellshowth.ie/) (https://maps.app.goo.gl/VHBzCKd2R2pbxMMt5)
 	- [ ] gran canal dock pub - The Old Spot | (https://www.instagram.com/the_old_spot_dublin/) (https://maps.app.goo.gl/YucxvQj59YgU7w6z5)
-	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin
-	- [ ] Hole in the Wall, Castleknock
-	- [ ] international pub food - Krewe, Capel street
-	- [ ] international pub food - Chubby's 
+	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin (https://maps.app.goo.gl/55ZuCRXRYwg84Rmv5)
+	- [ ] europe longest pub - Hole in the Wall, Castleknock (https://maps.app.goo.gl/RzZpcJyj5s1x5PP17)
+	- [ ] international pub food - Krewe, Capel street  (https://maps.app.goo.gl/Zn1mHyEnMJ45FyjW8)
+	- [ ] international pub food - Chubby's (https://maps.app.goo.gl/U7aeGy4N9LgxUACx6)
 	- [ ] Good chowder and fish - Wrights Anglers Rest, Phonix park | (https://maps.app.goo.gl/8yzLQuDCpQix7XYt5)
 - Brunch
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
 	- [x] middle eastern inspired - brother hubbard | (https://maps.app.goo.gl/qEHatAb1eeZatRhE6)
-	- [ ] bottomless mimosa - ALT at Wren Urban Nest
+	- [ ] bottomless mimosa - ALT at Wren Urban Nest (https://maps.app.goo.gl/B7zwtK2TrURBpYbb9)
 - Barbecue
 	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/Mh5eBCx19jDrUktJ9)
 	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/2tDZ9zbXRHNdB3mw5)
 - Mexican
-	- [x] food truck a herbert park, oppure a mountjoy square - El Grito
-	- [ ] taqueria north mexican - Pickosito
-	- [ ] drogheda - Gringo
-	- [ ] burrito in centro - Pablo piccante burrito bar
+	- [x] food truck a herbert park, oppure a mountjoy square - El Grito (https://maps.app.goo.gl/mPpcUKT9AT4XYLF87)
+	- [ ] taqueria north mexican - Pickosito (https://maps.app.goo.gl/1bakCwyba9LpGyA86)
+	- [ ] drogheda - Gringo (https://maps.app.goo.gl/cG6eDkJ7hoeoSc6Q6)
+	- [ ] burrito in centro - Pablo piccante burrito bar (https://maps.app.goo.gl/zBmoi3ceGftMFpaw5)

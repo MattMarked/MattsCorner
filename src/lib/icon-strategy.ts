@@ -8,14 +8,6 @@ interface IconMapping {
 }
 
 const ICON_STRATEGY: Record<string, IconMapping> = {
-  spanish: {
-    emoji: '🥘',
-    keywords: ['tapas', 'spanish', 'paella', 'pintxos', 'spain']
-  },
-  bagel: {
-    emoji: '🥯',
-    keywords: ['bagel', 'everything', 'schmear']
-  },
   italian: {
     emoji: '🇮🇹',
     keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'italiano', 'lasagna', 'gnocchi', 'ravioli']
@@ -24,13 +16,17 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🍕',
     keywords: ['pizza', 'pizzeria', 'taglio','slice']
   },
+  michelin: {
+    emoji: '⭐',
+    keywords: ['michelin', 'star', 'starred']
+  },
   cookie: {
     emoji: '🍪',
     keywords: ['cookie', 'cookies', 'crookie', 'crookies']
   },
   french; {
     emoji: '🇫🇷',
-    keywords: ['french', 'france', 'bistrot']
+    keywords: ['french', 'france', 'bistrot', 'bistro']
   },
   steak: {
     emoji: '🥩',
@@ -63,6 +59,18 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   japanese: {
     emoji: '🍱',
     keywords: ['japanese', 'giappo', 'giapponese', 'izakaya', 'teriyaki', 'tempura', 'bento', 'japan']
+  },
+  spanish: {
+    emoji: '🥘',
+    keywords: ['tapas', 'spanish', 'paella', 'pintxos', 'spain']
+  },
+  christmas: {
+    emoji: '🎄',
+    keywords: ['christmas', 'xmas']
+  },
+  bagel: {
+    emoji: '🥯',
+    keywords: ['bagel', 'everything', 'schmear']
   },
   thai_viet: {
     emoji: '🍲',
