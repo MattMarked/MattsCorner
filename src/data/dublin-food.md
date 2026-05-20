@@ -65,6 +65,7 @@
 - Sandwiches
 	- [x] fried chicken sandwich - Cluck chicken | (https://maps.app.goo.gl/sdnvLsPYrxMphXux7)
 	- [x] pastrami - pig and the heifer | (https://maps.app.goo.gl/JfNEXvwEQNXbATmz5)
+	- [ ] cubano e birria e ban mhi - Little Geno's ()
 	- [ ] fried chicken sandwich - Mad Egg | (https://maps.app.goo.gl/kYeCtrMKKsHdbbf47)
 	- [ ] korean fried chicken - chimac | (https://maps.app.goo.gl/4QXfLRhLo5W8GnEW6)
 
@@ -75,6 +76,9 @@
 	- [ ] Mambo Sambo| https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
 	- [x] breakfast roll - Declan and Dolan
 	- [ ] breakfast roll - Woodmill, Artane
+	- [ ] doughboys, charlotte way
+	- [ ] minetta deli, sutton ([[ristoranti vicini a casa]])
+	- [ ] loverboy, clontarf
 - burgers
 	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
 	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
@@ -102,6 +106,7 @@
 	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin
 	- [ ] Hole in the Wall, Castleknock
 	- [ ] international pub food - Krewe, Capel street
+	- [ ] international pub food - Chubby's 
 	- [ ] Good chowder and fish - Wrights Anglers Rest, Phonix park | (https://maps.app.goo.gl/8yzLQuDCpQix7XYt5)
 - Brunch
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)

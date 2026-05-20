@@ -10,19 +10,27 @@ interface IconMapping {
 const ICON_STRATEGY: Record<string, IconMapping> = {
   spanish: {
     emoji: '🥘',
-    keywords: ['tapas', 'spanish', 'paella', 'pintxos']
+    keywords: ['tapas', 'spanish', 'paella', 'pintxos', 'spain']
   },
   bagel: {
     emoji: '🥯',
-    keywords: ['bagel', 'everything']
+    keywords: ['bagel', 'everything', 'schmear']
   },
   italian: {
-    emoji: '🍝',
+    emoji: '🇮🇹',
     keywords: ['pasta', 'italian', 'spaghetti', 'trattoria', 'osteria', 'italiano', 'lasagna', 'gnocchi', 'ravioli']
   },
   pizza: {
     emoji: '🍕',
-    keywords: ['pizza', 'pizzeria', 'taglio']
+    keywords: ['pizza', 'pizzeria', 'taglio','slice']
+  },
+  cookie: {
+    emoji: '🍪',
+    keywords: ['cookie', 'cookies', 'crookie', 'crookies']
+  },
+  french; {
+    emoji: '🇫🇷',
+    keywords: ['french', 'france', 'bistrot']
   },
   steak: {
     emoji: '🥩',
@@ -30,7 +38,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   korea: {
     emoji: '🇰🇷',
-    keywords: ['korea', 'korean', 'corndog', 'tteokbokki']
+    keywords: ['korea', 'korean', 'corndog', 'tteokbokki', 'kimchi']
   },
   bbq: {
     emoji: '🍖',
@@ -62,7 +70,11 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   indian: {
     emoji: '🍛',
-    keywords: ['indian', 'curry', 'masala', 'tandoori', 'paneer', 'naan', 'nepalese', 'balti']
+    keywords: ['indian', 'curry', 'india', 'tandoori', 'paneer', 'naan', 'nepalese', 'balti']
+  },
+  hotpot: {
+    emoji: '🍢',
+    keywords: ['hotpot','oden','hot pot', 'shabu']
   },
   middle_eastern: {
     emoji: '🥙',
@@ -72,9 +84,21 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🥐',
     keywords: ['bakery', 'bread', 'pastry', 'croissant', 'donut', 'cake', 'sourdough', 'eclaire', 'patisserie', 'boulangerie']
   },
+  chips; {
+    emoji; '🍟',
+    keywords: ['chips','chip','fries','crisps']
+  },
+  hotdog: {
+    emoji: '🌭',
+    keywords: ['hotdog', 'hotdogs', 'chilidog']
+  },
   burgers: {
     emoji: '🍔',
-    keywords: ['burger', 'hamburger', 'smash', 'sliders']
+    keywords: ['burger', 'hamburger', 'smash', 'sliders', 'cheeseburger']
+  },
+  pancakes; {
+    emoji;'🥞',
+    keywords: ['pancake', 'pancakes', 'crepe', 'crepes']
   },
   mexican: {
     emoji: '🌮',
@@ -112,9 +136,13 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
     emoji: '🍩',
     keywords: ['dessert', 'ice cream', 'gelato', 'chocolate', 'sweet', 'sugar', 'crepe', 'cookie', 'doughnut', 'baklava', 'tiramisu', 'pudding']
   },
+  bubbletea: {
+    emoji: '🧋',
+    keywords: ['bubble', 'bubbletea', 'bubble tea', 'boba']
+  },
   beer: {
     emoji: '🍺',
-    keywords: ['pub', 'bar', 'beer', 'taproom', 'brewery', 'stout', 'ale', 'guinness', 'pilsner', 'ipa']
+    keywords: ['pub', 'bar', 'beer', 'pub grub', 'brewery', 'stout', 'ale', 'guinness', 'pilsner', 'ipa']
   },
   wine: {
     emoji: '🍷',
@@ -122,7 +150,7 @@ const ICON_STRATEGY: Record<string, IconMapping> = {
   },
   cocktail: {
     emoji: '🍸',
-    keywords: ['cocktail', 'mixology', 'speakeasy', 'spirits', 'gin', 'vodka', 'whiskey', 'rum']
+    keywords: ['cocktail', 'mixology', 'spirits', 'gin', 'vodka', 'whiskey', 'rum', 'whisky']
   }
 };
 
