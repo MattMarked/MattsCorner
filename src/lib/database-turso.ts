@@ -267,7 +267,7 @@ export class RestaurantRepository {
       const [totalResult, completedResult, categoriesResult] = await Promise.all([
         this.client.execute('SELECT COUNT(*) as count FROM restaurants'),
         this.client.execute('SELECT COUNT(*) as count FROM restaurants WHERE is_completed = 1'),
-        this.client.execute('SELECT COUNT(DISTINCT category) as count FROM restaurants WHERE category IS NOT NULL AND category != ""')
+        this.client.execute('SELECT COUNT(DISTINCT category) as count FROM restaurants WHERE category IS NOT NULL AND category != \'\'')
       ]);
       
       const total = Number(totalResult.rows[0]?.count) || 0;

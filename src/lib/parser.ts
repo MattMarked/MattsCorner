@@ -82,52 +82,61 @@ export async function parseMarkdownToRestaurants(markdownContent: string, resolv
 
 function parseRestaurantItem(content: string, category: string, isCompleted: boolean): Restaurant | null {
   try {
-    let nameAndDescriptionPart = content;
-    let linksPart = '';
+    // 1. Extract Google Maps URL (required)
+    const googleMapsUrlMatch = content.match(/https?:\/\/(?:www\.)?(?:google\.com\/maps|maps\.google\.com|goo\.gl\/maps|maps\.app\.goo\.gl)\/[^\s\)\]]+/i);
+    const googleMapsUrl = googleMapsUrlMatch ? googleMapsUrlMatch[0] : '';
 
-    // Split by pipe | for links
-    if (content.includes('|')) {
-      const parts = content.split('|');
-      nameAndDescriptionPart = parts[0].trim();
-      linksPart = parts[1].trim();
+    if (!googleMapsUrl) {
+      console.warn(`Skipping restaurant without Google Maps URL: ${content}`);
+      return null;
     }
 
-    // Split name and description by -
+    // 2. Extract Instagram/other URL (optional)
+    const allLinks = content.match(/https?:\/\/[^\s\)\]]+/gi) || [];
+    const instagramUrl = allLinks.find(link => 
+      !link.includes('google.com/maps') && 
+      !link.includes('maps.google.com') && 
+      !link.includes('goo.gl/maps') && 
+      !link.includes('maps.app.goo.gl')
+    ) || '';
+
+    // 3. Clean up content to extract name and description
+    let cleanContent = content;
+    
+    // Remove all links
+    for (const link of allLinks) {
+      cleanContent = cleanContent.split(link).join('');
+    }
+    
+    // Remove Obsidian tags [[...]]
+    cleanContent = cleanContent.replace(/\[\[.*?\]\]/g, '');
+    
+    // Remove pipe
+    cleanContent = cleanContent.replace(/\|/g, ' ');
+    
+    // Remove leftover parentheses and brackets
+    cleanContent = cleanContent.replace(/[()\[\]]/g, ' ');
+    
+    // Clean up extra spaces
+    cleanContent = cleanContent.replace(/\s+/g, ' ').trim();
+
+    // 4. Split name and description by " - "
     let name = '';
     let description = '';
 
-    if (nameAndDescriptionPart.includes(' - ')) {
-      const parts = nameAndDescriptionPart.split(' - ');
-      description = parts[0].trim();
-      name = parts[1].trim();
-    } else {
-      name = nameAndDescriptionPart.trim();
-      description = nameAndDescriptionPart.trim();
-    }
-
-    // Parse links
-    let googleMapsUrl = '';
-    let instagramUrl = '';
-
-    if (linksPart) {
-      // remove any trailing and leading parentheses or brackets ()[]
-      const cleanLinks = linksPart.replace(/[()\[\]]/g, ' ').split(/\s+/).filter(Boolean);
-      for (const link of cleanLinks) {
-        if (link.startsWith('http')) {
-          if (link.includes('google.com/maps') || link.includes('maps.google.com') || link.includes('goo.gl/maps') || link.includes('maps.app.goo.gl')) {
-            googleMapsUrl = link;
-          } else {
-            // social network / website link
-            instagramUrl = link;
-          }
-        }
+    if (cleanContent.includes(' - ')) {
+      const parts = cleanContent.split(' - ');
+      // Handle cases with multiple " - " by taking the last part as name
+      if (parts.length > 2) {
+        name = parts[parts.length - 1].trim();
+        description = parts.slice(0, parts.length - 1).join(' - ').trim();
+      } else {
+        description = parts[0].trim();
+        name = parts[1].trim();
       }
-    }
-
-    // Skip items without Google Maps URL (required)
-    if (!googleMapsUrl) {
-      console.warn(`Skipping restaurant without Google Maps URL: ${name}`);
-      return null;
+    } else {
+      name = cleanContent;
+      description = cleanContent;
     }
 
     // Generate unique ID based on name and category
