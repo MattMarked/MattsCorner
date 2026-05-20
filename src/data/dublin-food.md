@@ -75,9 +75,11 @@
 	- [ ] Mambo Sambo | https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
 	- [x] breakfast roll - Declan and Dolan | (https://maps.app.goo.gl/Mm7GkDoDXJHxs3d67)
 	- [ ] breakfast roll - Woodmill, Artane | (https://maps.app.goo.gl/wvk1qrMzbEHWbZoH8)
+	- [ ] Breakfast sando, bourdain sando, katsu chicken - Sando Paradiso | (https://www.instagram.com/sandoparadiso/)(https://maps.app.goo.gl/homaabgQN5pQiE8K9)
 	- [ ] doughboys, charlotte way
 	- [ ] sandwich focaccia - minetta deli, sutton | ([[ristoranti vicini a casa]])(https://maps.app.goo.gl/qQbfwFHD2M8tcAri6)
 	- [ ] focacce - loverboy, clontarf | (https://maps.app.goo.gl/2PiWEWvyxcFux7fVA)
+	- [ ] bahn mi, caesar wrap - Dandelion, Howth | [[ristoranti vicini a casa]] (https://www.instagram.com/dandelion_howth/) (https://maps.app.goo.gl/YQA1e17Bigapq4tB6)
 - burgers
 	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
 	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
