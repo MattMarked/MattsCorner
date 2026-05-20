@@ -70,7 +70,7 @@
 	- [ ] korean fried chicken - chimac | (https://maps.app.goo.gl/4QXfLRhLo5W8GnEW6)
 	- [ ] chicago beef sandwich come in the bear | ([hawksmoor](https://www.instagram.com/p/C86x3iUCHRp/))(https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
 	- [ ] Roast in a Roll  FX buckley victualler | (https://www.instagram.com/fxbuckleyvictuallerandgrocer/) )(https://maps.app.goo.gl/wndKed8Rx8B4PWTbA)
-	- [ ] Fermented veggie / pickels - Fairmental | (https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
+	- [ ] Fermented veggie / pickles - Fairmental | (https://www.instagram.com/fairmental_/))(https://maps.app.goo.gl/RcDHGBaVfPGqAaJfA)
 	- [ ] berlin style kebab - Chiya | https://www.instagram.com/chiyadublin/)(https://maps.app.goo.gl/V1NUzSBjGnq4SKxx8)
 	- [ ] Mambo Sambo | https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
 	- [x] breakfast roll - Declan and Dolan | (https://maps.app.goo.gl/Mm7GkDoDXJHxs3d67)
@@ -113,8 +113,8 @@
 	- [x] middle eastern inspired - brother hubbard | (https://maps.app.goo.gl/qEHatAb1eeZatRhE6)
 	- [ ] bottomless mimosa - ALT at Wren Urban Nest | (https://maps.app.goo.gl/B7zwtK2TrURBpYbb9)
 - Barbecue
-	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/Mh5eBCx19jDrUktJ9)
-	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/2tDZ9zbXRHNdB3mw5)
+	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/J28R2DqbV2RpjEAo9)
+	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/g2D45VVYfiEtVCpy8)
 - Mexican
 	- [x] food truck a herbert park, oppure a mountjoy square - El Grito | (https://maps.app.goo.gl/mPpcUKT9AT4XYLF87)
 	- [ ] taqueria north mexican - Pickosito | (https://maps.app.goo.gl/1bakCwyba9LpGyA86)
