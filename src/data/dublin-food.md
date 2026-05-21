@@ -109,7 +109,6 @@
 	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin | (https://maps.app.goo.gl/55ZuCRXRYwg84Rmv5)
 	- [ ] europe longest pub - Hole in the Wall, Castleknock |(https://maps.app.goo.gl/RzZpcJyj5s1x5PP17)
 	- [ ] international pub food - Krewe, Capel street | (https://maps.app.goo.gl/Zn1mHyEnMJ45FyjW8)
-	- [ ] international pub food - Chubby's | (https://maps.app.goo.gl/cED37wLm8T9aRSgn8)
 	- [ ] Good chowder and fish - Wrights Anglers Rest, Phonix park | (https://maps.app.goo.gl/8yzLQuDCpQix7XYt5)
 - Brunch
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
@@ -118,6 +117,8 @@
 - Barbecue
 	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/J28R2DqbV2RpjEAo9)
 	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/g2D45VVYfiEtVCpy8)
+	- [ ]  barbecue and international food - Chubby's | (https://maps.app.goo.gl/cED37wLm8T9aRSgn8)(https://www.instagram.com/chubbyskitchen.ie/)
+	- [ ] best brisket in dublin - My Meat Wagon (https://maps.app.goo.gl/qCBVpPyEU3xPVty97)
 - Mexican
 	- [x] food truck a herbert park, oppure a mountjoy square - El Grito | (https://maps.app.goo.gl/mPpcUKT9AT4XYLF87)
 	- [ ] taqueria north mexican - Pickosito | (https://maps.app.goo.gl/1bakCwyba9LpGyA86)
