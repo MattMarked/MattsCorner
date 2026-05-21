@@ -11,6 +11,7 @@
 	- [x] Kajjal, indiano expensive a Malahide | [[ristoranti vicini a casa]] (https://maps.app.goo.gl/JhyFZRC33rd6pBV87)
 	- [x] noodles homemade - Lee's charming noodle , parnell street | [@leescharmingnoodles_dublin](https://www.instagram.com/leescharmingnoodles_dublin/ https://maps.app.goo.gl/kCoj484BXVpGxDY3A)
 	- [ ] Cinese high quality - Big fan | (https://www.instagram.com/bigfanbao/) (https://maps.app.goo.gl/DXkA8jUYrRgxYXnK7)
+	- [ ] korean dumplings and fried chicken - DAK | (https://www.instagram.com/dakdublin/)(https://maps.app.goo.gl/QCEMXVGKMg581iXV7)
 	- [x] Cinese hot pot - cheng du hotpot | (https://maps.app.goo.gl/bB8ZmCJny8W5YsMp7)
 - Italiano (not pizza)
 	- [ ] sicilian food - Amuri | (https://maps.app.goo.gl/wDUUpKcJ8trGKzMX7)
@@ -108,7 +109,7 @@
 	- [ ] Coddle and pork dishes - The Gravedigger, Glasnevin | (https://maps.app.goo.gl/55ZuCRXRYwg84Rmv5)
 	- [ ] europe longest pub - Hole in the Wall, Castleknock |(https://maps.app.goo.gl/RzZpcJyj5s1x5PP17)
 	- [ ] international pub food - Krewe, Capel street | (https://maps.app.goo.gl/Zn1mHyEnMJ45FyjW8)
-	- [ ] international pub food - Chubby's | (https://maps.app.goo.gl/U7aeGy4N9LgxUACx6)
+	- [ ] international pub food - Chubby's | (https://maps.app.goo.gl/cED37wLm8T9aRSgn8)
 	- [ ] Good chowder and fish - Wrights Anglers Rest, Phonix park | (https://maps.app.goo.gl/8yzLQuDCpQix7XYt5)
 - Brunch
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
