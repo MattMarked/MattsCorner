@@ -11,8 +11,10 @@
 	- [x] Kajjal, indiano expensive a Malahide | [[ristoranti vicini a casa]] (https://maps.app.goo.gl/JhyFZRC33rd6pBV87)
 	- [x] noodles homemade - Lee's charming noodle , parnell street | [@leescharmingnoodles_dublin](https://www.instagram.com/leescharmingnoodles_dublin/ https://maps.app.goo.gl/kCoj484BXVpGxDY3A)
 	- [ ] Cinese high quality - Big fan | (https://www.instagram.com/bigfanbao/) (https://maps.app.goo.gl/DXkA8jUYrRgxYXnK7)
-	- [ ] korean dumplings and fried chicken - DAK | (https://www.instagram.com/dakdublin/)(https://maps.app.goo.gl/QCEMXVGKMg581iXV7)
+	- [x] korean dumplings and fried chicken - DAK | (https://www.instagram.com/dakdublin/)(https://maps.app.goo.gl/QCEMXVGKMg581iXV7)
 	- [x] Cinese hot pot - cheng du hotpot | (https://maps.app.goo.gl/bB8ZmCJny8W5YsMp7)
+	- [ ] japanese barbecue - Yaki Niku
+	- [x] dumplings - Yibu  | (https://maps.app.goo.gl/1gJAMreDKbRNRVC67)
 - Italiano (not pizza)
 	- [ ] sicilian food - Amuri | (https://maps.app.goo.gl/wDUUpKcJ8trGKzMX7)
 	- [x] pasta e pesce - Osteria Lucio | (https://maps.app.goo.gl/4mPFuJZQTAuyfWt16)
@@ -81,10 +83,12 @@
 	- [ ] sandwich focaccia - minetta deli, sutton | ([[ristoranti vicini a casa]])(https://maps.app.goo.gl/qQbfwFHD2M8tcAri6)
 	- [ ] focacce - loverboy, clontarf | (https://maps.app.goo.gl/2PiWEWvyxcFux7fVA)
 	- [ ] bahn mi, caesar wrap - Dandelion, Howth | [[ristoranti vicini a casa]] (https://www.instagram.com/dandelion_howth/) (https://maps.app.goo.gl/YQA1e17Bigapq4tB6)
+	- [ ] schiacciata fiorentina - Morso
+	- [ ] fried chicken sandwich e tenders nashville - Luckies, finglas (https://maps.app.goo.gl/kjnhhZxzLsEFAsbt5)
 - burgers
 	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
 	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
-	- [ ] smash - bunsen, varie location (una anche a blanchard) | (https://maps.app.goo.gl/GfSoPFxvWJpCT5t38)
+	- [ ] thick - bunsen, varie location (una anche a blanchard) | (https://maps.app.goo.gl/GfSoPFxvWJpCT5t38)
 	- [ ] thick burger - Bujo | (https://maps.app.goo.gl/po3kFyKNykJf6BnV9)
 - Christmas
 	- [x] Xmas Sando - Yellowdoor | (https://maps.app.goo.gl/m9VB2jm3JRfrVTVU7)
