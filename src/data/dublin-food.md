@@ -97,7 +97,7 @@
 	- [ ] Xmas Sando - Balgriffin Inn | [[ristoranti vicini a casa]] (https://maps.app.goo.gl/Pb3ya7EvH3oH6coDA)
 - Steakhouses
 	- [ ] steakhouse pettinata - FX buckley |(https://www.thebuckleycollection.ie/crow-street) (https://maps.app.goo.gl/hA38V7nzZfPzibQg9)
-	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/K8VmbGM4DxE9mxq18)
+	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/XnS5mJBqbhrPzmYt5)
 	- [ ] steakhouse media - Bovinity | https://www.instagram.com/bovinitydublin/ (https://maps.app.goo.gl/f51Zxe7BPLTKd6M7A)
 	- [x] steakhouse cheap - Boeuf and Frites | https://maps.app.goo.gl/jyJqGRvEUeWshknKA
 - pizza al taglio
@@ -124,7 +124,7 @@
 	- [ ]  barbecue and international food - Chubby's | (https://maps.app.goo.gl/cED37wLm8T9aRSgn8)(https://www.instagram.com/chubbyskitchen.ie/)
 	- [ ] best brisket in dublin - My Meat Wagon (https://maps.app.goo.gl/qCBVpPyEU3xPVty97)
 - Mexican
-	- [x] food truck a herbert park, oppure a mountjoy square - El Grito | (https://maps.app.goo.gl/mPpcUKT9AT4XYLF87)
+	- [x] food truck a herbert park, oppure a mountjoy square - El Grito | (https://maps.app.goo.gl/nufz4YNswSUeJ3CS7)
 	- [ ] taqueria north mexican - Pickosito | (https://maps.app.goo.gl/1bakCwyba9LpGyA86)
 	- [ ] drogheda - Gringo | (https://maps.app.goo.gl/cG6eDkJ7hoeoSc6Q6)
 	- [ ] burrito in centro - Pablo piccante burrito bar | (https://maps.app.goo.gl/zBmoi3ceGftMFpaw5)
