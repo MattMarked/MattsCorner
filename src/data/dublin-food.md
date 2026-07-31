@@ -118,6 +118,7 @@
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
 	- [x] middle eastern inspired - brother hubbard | (https://maps.app.goo.gl/qEHatAb1eeZatRhE6)
 	- [ ] bottomless mimosa - ALT at Wren Urban Nest | (https://maps.app.goo.gl/B7zwtK2TrURBpYbb9)
+	- [ ] prawn toast eggs benedicts - Floritz, davanti a st stephen's green
 - Barbecue
 	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/J28R2DqbV2RpjEAo9)
 	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/g2D45VVYfiEtVCpy8)
