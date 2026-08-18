@@ -100,6 +100,7 @@
 	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/XnS5mJBqbhrPzmYt5)
 	- [ ] steakhouse media - Bovinity | https://www.instagram.com/bovinitydublin/ (https://maps.app.goo.gl/f51Zxe7BPLTKd6M7A)
 	- [x] steakhouse cheap - Boeuf and Frites | https://maps.app.goo.gl/jyJqGRvEUeWshknKA
+	- [x] steakhouse panoramica - Ryleygh's rooftop
 - pizza al taglio
 	- [ ] bambino |(https://www.instagram.com/bambino_dublin/)(https://maps.app.goo.gl/rZyaKVop5rm9vbB57)
 	- [ ] Vice | (https://www.instagram.com/vicedublin/)(https://maps.app.goo.gl/FnMnPYdt7dDEqbwD8)
