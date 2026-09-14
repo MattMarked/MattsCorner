@@ -143,7 +143,7 @@ export class RestaurantRepository {
   }
   
   // Get all restaurants with pagination
-  async getAllRestaurants(limit: number = 100, offset: number = 0): Promise<Restaurant[]> {
+  async getAllRestaurants(limit: number = 300, offset: number = 0): Promise<Restaurant[]> {
     try {
       const result = await this.client.execute({
         sql: `SELECT * FROM restaurants ORDER BY category, name LIMIT ? OFFSET ?`,
