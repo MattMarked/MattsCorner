@@ -13,15 +13,15 @@
 	- [ ] Cinese high quality - Big fan | (https://www.instagram.com/bigfanbao/) (https://maps.app.goo.gl/DXkA8jUYrRgxYXnK7)
 	- [x] korean dumplings and fried chicken - DAK | (https://www.instagram.com/dakdublin/)(https://maps.app.goo.gl/QCEMXVGKMg581iXV7)
 	- [x] Cinese hot pot - cheng du hotpot | (https://maps.app.goo.gl/bB8ZmCJny8W5YsMp7)
-	- [ ] japanese barbecue - Yaki Niku
+	- [ ] japanese barbecue - Yaki Niku (Matsukawa) | (https://www.google.com/maps/search/?api=1&query=Yakiniku+Matsukawa+Dublin)
 	- [x] dumplings - Yibu  | (https://maps.app.goo.gl/1gJAMreDKbRNRVC67)
 - Italiano (not pizza)
 	- [ ] sicilian food - Amuri | (https://maps.app.goo.gl/wDUUpKcJ8trGKzMX7)
 	- [x] pasta e pesce - Osteria Lucio | (https://maps.app.goo.gl/4mPFuJZQTAuyfWt16)
 	- [ ] pasta al pesce - Il Vicoletto | (https://maps.app.goo.gl/mxoAKaUFLwnNBjfGA)
-	- [ ] pasta, contorni e carne - I Monelli, Portobello | (https://maps.app.goo.gl/1NmPQ9nkXwERw7CaA?g_st=ic)
+	- [ ] pasta, contorni e carne - I Monelli, Portobello | (https://www.google.com/maps/search/?api=1&query=I+Monelli+Portobello+Dublin)
 	- [ ] pasta - Sprezzatura | (https://maps.app.goo.gl/HucbWcNcyHLSo5bh7)
-	- [ ] pasta e secondi -  (https://maps.app.goo.gl/2qrF2cPGjx2Mw5fy5)
+	- [ ] pasta e secondi - CRUDO, Sandymount | (https://maps.app.goo.gl/2qrF2cPGjx2Mw5fy5)
 	- [ ] pasta - Grano | (https://maps.app.goo.gl/nJVmSFfrjeNMt317A)
 	- [x] siciliano - Dolce sicily | (https://maps.app.goo.gl/hPeaH6a8CqLCjEFR6)
 	- [x] that's amore [[ristoranti vicini a casa]] | (https://maps.app.goo.gl/73MvVy9VshmEnYPu5)
@@ -42,12 +42,12 @@
 	- [ ] lebanese - shaku maku | (https://maps.app.goo.gl/HYvynUAMQsekNEhp6)
 - Bagels
 	- [ ] Ada coffee and bagels , Thomas St | (https://maps.app.goo.gl/Sx9jCtZW4dhCV6Jo8)
-	- [ ] FatBabyBakes, NY style, only order in advance |(https://. ww.instagram.com/fatbabybakes/)
+	- [ ] FatBabyBakes, NY style, only order in advance (Ringsend, no storefront) | (https://www.instagram.com/fatbabybakes/)
 	- [ ] itsa Bagels, Middle Abbey Street (ingresso di Arnotts) | (https://www.instagram.com/itsadublin/)(https://maps.app.goo.gl/35MUZHbCFyd4tRr4A)
 	- [ ] volumes bagels | (https://www.instagram.com/volumesdublin/)(https://maps.app.goo.gl/T41wW6m7S6fsPXy86)
 	- [ ] the bretzel bakery, Portobello | (https://maps.app.goo.gl/xNth8rz2dGD1Z8ms7)
 - Pizza
-	- [x] La Papessa [[ristoranti vicini a casa]]
+	- [x] La Papessa [[ristoranti vicini a casa]] | (https://www.google.com/maps/search/?api=1&query=La+Papessa+Pizza+Woodbine+Raheny+Dublin)
 	- [x] Boco | (https://maps.app.goo.gl/CFqGqubYayrFW5Ly9)
 	- [x] Sano | (https://maps.app.goo.gl/DV9fNcu2ivmrp7uV8)
 	- [x] Forno 500 | (https://maps.app.goo.gl/MXFL1tDrErQxgZy68)
@@ -78,17 +78,17 @@
 	- [ ] berlin style kebab - Chiya | https://www.instagram.com/chiyadublin/)(https://maps.app.goo.gl/V1NUzSBjGnq4SKxx8)
 	- [ ] Mambo Sambo | https://www.instagram.com/mambosambo_1/ (https://maps.app.goo.gl/oo6wFPqH2oHf8iUt7)
 	- [x] breakfast roll - Declan and Dolan | (https://maps.app.goo.gl/Mm7GkDoDXJHxs3d67)
-	- [ ] breakfast roll - Woodmill, Artane | (https://maps.app.goo.gl/wvk1qrMzbEHWbZoH8)
+	- [ ] breakfast roll - Woodmill, Artane (CLOSED) | (https://maps.app.goo.gl/wvk1qrMzbEHWbZoH8)
 	- [ ] Breakfast sando, bourdain sando, katsu chicken - Sando Paradiso | (https://www.instagram.com/sandoparadiso/)(https://maps.app.goo.gl/homaabgQN5pQiE8K9)
-	- [ ] doughboys, charlotte way
+	- [ ] doughboys, charlotte way | (https://www.google.com/maps/search/?api=1&query=Doughboys+Charlotte+Way+Dublin)
 	- [ ] sandwich focaccia - minetta deli, sutton | ([[ristoranti vicini a casa]])(https://maps.app.goo.gl/qQbfwFHD2M8tcAri6)
 	- [ ] focacce - loverboy, clontarf | (https://maps.app.goo.gl/2PiWEWvyxcFux7fVA)
 	- [ ] bahn mi, caesar wrap - Dandelion, Howth | [[ristoranti vicini a casa]] (https://www.instagram.com/dandelion_howth/) (https://maps.app.goo.gl/YQA1e17Bigapq4tB6)
-	- [ ] schiacciata fiorentina - Morso
+	- [ ] schiacciata fiorentina - Morso | (https://www.google.com/maps/search/?api=1&query=Morso+42+Drury+Street+Dublin)
 	- [ ] fried chicken sandwich e tenders nashville - Luckies, finglas (https://maps.app.goo.gl/kjnhhZxzLsEFAsbt5)
 - burgers
 	- [x] smash burger - dash burger | (https://maps.app.goo.gl/YrrRYyimgvdu2MWt5)
-	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]]
+	- [x] smash burger - Rolling stoves [[ristoranti vicini a casa]] | (https://www.google.com/maps/search/?api=1&query=The+Rolling+Stoves+Main+St+Clongriffin+Dublin)
 	- [x] thick - bunsen, varie location (una anche a blanchard) | (https://maps.app.goo.gl/GfSoPFxvWJpCT5t38)
 	- [ ] thick burger - Bujo | (https://maps.app.goo.gl/po3kFyKNykJf6BnV9)
 - Christmas
@@ -101,7 +101,7 @@
 	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/XnS5mJBqbhrPzmYt5)
 	- [ ] steakhouse media - Bovinity | https://www.instagram.com/bovinitydublin/ (https://maps.app.goo.gl/f51Zxe7BPLTKd6M7A)
 	- [x] steakhouse cheap - Boeuf and Frites | https://maps.app.goo.gl/jyJqGRvEUeWshknKA
-	- [x] steakhouse panoramica - Ryleygh's rooftop
+	- [x] steakhouse panoramica - Ryleigh's rooftop | (https://www.google.com/maps/search/?api=1&query=Ryleigh%27s+Rooftop+Steakhouse+Dublin)
 - pizza al taglio
 	- [x] bambino |(https://www.instagram.com/bambino_dublin/)(https://maps.app.goo.gl/rZyaKVop5rm9vbB57)
 	- [ ] Vice | (https://www.instagram.com/vicedublin/)(https://maps.app.goo.gl/FnMnPYdt7dDEqbwD8)
@@ -120,7 +120,7 @@
 	- [x] classic - Pog |(https://maps.app.goo.gl/VsJN29CcH4ZLCvY5A ma anche altre sedi)
 	- [x] middle eastern inspired - brother hubbard | (https://maps.app.goo.gl/qEHatAb1eeZatRhE6)
 	- [ ] bottomless mimosa - ALT at Wren Urban Nest | (https://maps.app.goo.gl/B7zwtK2TrURBpYbb9)
-	- [ ] prawn toast eggs benedicts - Floritz, davanti a st stephen's green
+	- [ ] prawn toast eggs benedicts - Floritz, davanti a st stephen's green | (https://www.google.com/maps/search/?api=1&query=Floritz+22+St+Stephens+Green+Dublin)
 - Barbecue
 	- [x] Pitt bros BBQ | ([south great georges street](https://www.instagram.com/pittbrosbbq/?hl=en) )(https://maps.app.goo.gl/J28R2DqbV2RpjEAo9)
 	- [ ] brazilian bbq all you can eat - Bah33 | (https://maps.app.goo.gl/g2D45VVYfiEtVCpy8)
