@@ -6,7 +6,11 @@ import { Restaurant } from '@/lib/parser';
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
+  const [xmasOnly, setXmasOnly] = useState(() => {
+    const now = new Date();
+    const month = now.getMonth(); // 0-indexed: 10 is November, 11 is December
+    return month === 10 || month === 11;
+  });
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -21,7 +25,6 @@ export default function Home() {
     .then(([restaurantsRes, statsRes]) => {
       if (restaurantsRes.success) {
         setRestaurants(restaurantsRes.data);
-        setFilteredRestaurants(restaurantsRes.data);
       }
       if (statsRes.success) {
         setStats(statsRes.data);
@@ -34,21 +37,10 @@ export default function Home() {
     });
   }, []);
 
-  const handleFilterChange = (filters: {
-    search?: string;
-  }) => {
-    let filtered = [...restaurants];
-
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
-      filtered = filtered.filter(r => 
-        r.name.toLowerCase().includes(searchLower) ||
-        r.description.toLowerCase().includes(searchLower)
-      );
-    }
-
-    setFilteredRestaurants(filtered);
-  };
+  const displayedRestaurants = restaurants.filter(r => {
+    const isChristmas = (r.category || '').trim().toLowerCase() === 'christmas';
+    return xmasOnly ? isChristmas : !isChristmas;
+  });
 
   const handleRefresh = async () => {
     setRefreshing(true);
@@ -73,7 +65,6 @@ export default function Home() {
         
         if (restaurantsRes.success) {
           setRestaurants(restaurantsRes.data);
-          setFilteredRestaurants(restaurantsRes.data);
         }
         if (statsRes.success) {
           setStats(statsRes.data);
@@ -119,6 +110,18 @@ export default function Home() {
             </div>
             
             <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2 cursor-pointer select-none px-3 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={xmasOnly}
+                  onChange={(e) => setXmasOnly(e.target.checked)}
+                  className="w-4 h-4 text-red-600 rounded border-gray-300 focus:ring-red-500 cursor-pointer"
+                />
+                <span className="text-sm font-medium text-gray-700 flex items-center gap-1">
+                  🎄 Xmas
+                </span>
+              </label>
+
               {refreshMessage && (
                 <span className="text-sm font-medium">
                   {refreshMessage}
@@ -143,7 +146,7 @@ export default function Home() {
       {/* Main Content - Full Width Map */}
       <div className="flex-1 relative">
         <RestaurantMap
-          restaurants={filteredRestaurants}
+          restaurants={displayedRestaurants}
           onRestaurantClick={handleRestaurantClick}
         />
       </div>
