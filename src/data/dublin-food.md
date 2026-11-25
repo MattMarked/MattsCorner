@@ -101,6 +101,8 @@
 	- [ ] Xmas Sando - The Lab Raheny dietro St Anne (https://maps.app.goo.gl/4u9B8EkDodGtkUs9A)
 	- [ ] Xmas Po'boy - Krewe (https://maps.app.goo.gl/gyCcLMtuHNqczB5C9)
 	- [ ] Xmas Focaccia - Morso (https://maps.app.goo.gl/a5QZtaBsqgxfBw5V6)
+	- [ ] Xmas Sando - The Green Straw at Swords (https://maps.app.goo.gl/LnWFajgDZHAtVmEx8)
+	- [ ] Xmas Roll - Tir Deli (https://maps.app.goo.gl/SYsVEBLFWPgSfPbS7)
 - Steakhouses
 	- [ ] steakhouse pettinata - FX buckley |(https://www.thebuckleycollection.ie/crow-street) (https://maps.app.goo.gl/hA38V7nzZfPzibQg9)
 	- [ ] steakhouse pettinata 2  - Hawksmoor | (https://maps.app.goo.gl/XnS5mJBqbhrPzmYt5)
